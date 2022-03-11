@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button autoHide="false"></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="title" style="margin-right: 50px;" class="ion-text-center">
+            All Reports | {{ username }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <!-- <h2 style="color:#2A1770;" text-center>Full user Details</h2> -->
+    <div *ngIf="!loading">
+        <ion-card>
+            <ion-card-header>
+                <h3 style="color:black; font-size:19px;">{{ "Report Name" }}</h3>
+            </ion-card-header>
+            <ion-card-content>
+                <!-- <p> -->
+                <h3 style="color:black; font-size:17px;">{{ "Report Description" }}</h3>
+                <h3 style="color:black; font-size:17px;">{{"Author Details: " }} {{ "First Name and Last Name" }}</h3>
+                <hr>
+
+                <p style="color:black;">
+                    <ion-label>Date Created {{ bought2 | date }} at {{ bought2 | date:"shortTime" }}</ion-label>
+                </p>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <div *ngIf="loading" class="text ion-text-center myloader">
+        <img height="200" width="auto" src="assets/imgs/tenor.gif">
+        <div class="text">
+            Loading....
+        </div>
+    </div>
+
+</ion-content>

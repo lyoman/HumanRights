@@ -1,0 +1,7 @@
+{
+    "name": "Human Rights Monitoring",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "angular"
+}

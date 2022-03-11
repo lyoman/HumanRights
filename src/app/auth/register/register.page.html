@@ -1,0 +1,103 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="title" style="margin-right:50px;">Account Register</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="ion-padding animated fadeIn login auth-page">
+    <div class="login-content">
+
+        <form class="list-form">
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="person" item-start class="text-warning"></ion-icon>
+                    Username
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="user.username" name="username"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="person" item-start class="text-warning"></ion-icon>
+                    First Name
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="user.first_name" name="first_name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="person" item-start class="text-warning"></ion-icon>
+                    Last Name
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="user.last_name" name="last_name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="call" item-start class="text-warning"></ion-icon>
+                    Phone Number
+                </ion-label>
+                <ion-input type="number" [(ngModel)]="user.phone_number" name="phone_number"></ion-input>
+            </ion-item>
+
+            <!-- <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="compass" item-start class="text-warning"></ion-icon>
+                    Business Name
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="user.business" name="business"></ion-input>
+            </ion-item> -->
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
+                    Email
+                </ion-label>
+                <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color:#1a1aff;">
+                    <ion-icon name="log-in" item-start class="text-warning"></ion-icon>
+                    Password
+                </ion-label>
+                <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color:#1a1aff;">
+                    <ion-icon name="log-in" item-start class="text-warning"></ion-icon>
+                    Confirm Password
+                </ion-label>
+                <ion-input type="password" [(ngModel)]="user.cpassword" name="cpassword"></ion-input>
+            </ion-item>
+
+        </form>
+        <!-- <p text-right>
+            <ion-text text-right color="primary" tappable end>
+                <strong>Forgot Password?</strong>
+            </ion-text>
+        </p> -->
+
+        <div margin-top>
+            <ion-button class="shary" shape="round" icon-start expand="block" color="warning" tappable (click)="register();">
+                <ion-icon color="light" name="log-in"></ion-icon>
+                <p color="light " style="color: #ffffff; ">Register</p>
+            </ion-button>
+
+
+        </div><br>
+        <div text-center margin-top>
+            <span tappable [routerLink]="[ '/login'] ">
+        <ion-text color="primary ">Have an account? <strong style="color: #990099 ">Login here</strong></ion-text>
+      </span>
+        </div>
+
+    </div>
+</ion-content>
