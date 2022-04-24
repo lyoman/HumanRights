@@ -12,7 +12,19 @@
 <ion-content class="ion-padding animated fadeIn login auth-page">
     <div class="login-content">
         <form class="list-form">
-
+            <!-- <form>
+                <ion-item>
+                    <ion-label position="floating" style="color: #1a1aff;">
+                        <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+                        Does the Case involves a Company?
+                    </ion-label>
+                    <ion-select (change)="ivCompany(form.value)" [(ngModel)]="involves_company" class="myCustomSelect"
+                        name="involves_company">
+                        <ion-select-option value="true">{{ 'Yes' }}</ion-select-option>
+                        <ion-select-option value="false">{{ 'No' }}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </form> -->
             <ion-list *ngIf="involves_company == 'true'">
                 <ion-list-header>
                     <h2>Company Details</h2>
@@ -54,7 +66,8 @@
                         <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
                         When it started Operating
                     </ion-label>
-                    <ion-input type="text" [(ngModel)]="company.when_it_started_operating" name="when_it_started_operating"></ion-input>
+                    <ion-input type="text" [(ngModel)]="company.when_it_started_operating"
+                        name="when_it_started_operating"></ion-input>
                 </ion-item>
             </ion-list>
 
@@ -72,8 +85,10 @@
                     Type of violation
                 </ion-label>
 
-                <ion-select class= "myCustomSelect" placeholder="Please select" [(ngModel)]="new_case.type_of_violation" name="type_of_violation">
-                    <ion-select-option *ngFor="let item of VIOLATION_TYPE" value="item.name" name="type_of_violation">{{ item.name }}</ion-select-option>
+                <ion-select class="myCustomSelect" placeholder="Please select" [(ngModel)]="new_case.type_of_violation"
+                    name="type_of_violation">
+                    <ion-select-option *ngFor="let item of VIOLATION_TYPE" value="item.name" name="type_of_violation">{{
+                        item.name }}</ion-select-option>
                 </ion-select>
 
                 <!-- <ion-input type="text" [(ngModel)]="user.name" name="Name"></ion-input> -->
@@ -98,16 +113,21 @@
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                     Location
                 </ion-label>
-                <!-- <ion-input type="number" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <ion-input type="text" [(ngModel)]="user.amount" name="amount"></ion-input>
+
+                <ion-input type="text" [(ngModel)]="new_case.location" name="location"></ion-input>
             </ion-item>
+
+            <hr><br>
+
+            <h2>Details of the Victims</h2>
 
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
                     Description of the Victims
                 </ion-label>
-                <ion-select placeholder="Please select" [(ngModel)]="user.description" name="description">
+                <ion-select placeholder="Please select" [(ngModel)]="new_case.description_of_victims"
+                    name="description_of_victims">
                     <ion-select-option value="gurdian">Community member (individual/group)</ion-select-option>
                     <ion-select-option value="user">Women</ion-select-option>
                     <ion-select-option value="user">Girls</ion-select-option>
@@ -127,7 +147,7 @@
                     <ion-icon name="briefcase" item-start class="text-warning"></ion-icon>
                     Name(s) of victims or Alias
                 </ion-label>
-                <ion-input type="text" [(ngModel)]="user.quantity" name="Quantity"></ion-input>
+                <ion-input type="text" [(ngModel)]="new_case.names_of_vitims" name="names_of_vitims"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -135,7 +155,7 @@
                     <ion-icon name="briefcase" item-start class="text-warning"></ion-icon>
                     Age of victim
                 </ion-label>
-                <ion-input type="number" [(ngModel)]="user.quantity" name="Quantity"></ion-input>
+                <ion-input type="number" [(ngModel)]="new_case.victim_age" name="victim_age"></ion-input>
             </ion-item>
 
 
@@ -144,7 +164,7 @@
                     <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
                     Gender of victim
                 </ion-label>
-                <ion-select placeholder="Please select" [(ngModel)]="user.description" name="description">
+                <ion-select placeholder="Please select" [(ngModel)]="new_case.victim_gender" name="victim_gender">
                     <ion-select-option value="Male">Male</ion-select-option>
                     <ion-select-option value="Female">Female</ion-select-option>
                 </ion-select>
@@ -156,9 +176,14 @@
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                     Contact details of victim
                 </ion-label>
-                <!-- <ion-input type="number" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <ion-input type="text" [(ngModel)]="user.amount" name="amount"></ion-input>
+
+                <ion-input type="text" [(ngModel)]="new_case.victim_phone_number" name="victim_phone_number">
+                </ion-input>
             </ion-item>
+
+            <hr><br>
+
+            <h2>Details of the Perpetrator</h2>
 
             <ion-item>
 
@@ -166,16 +191,16 @@
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                     Description of the Perpetrator
                 </ion-label>
-                <ion-select placeholder="Please select" [(ngModel)]="user.description" name="description">
-                    <ion-select-option value="Male">Mining company security guards (if it’s a company the App will give more options to describe the company in detail giving information like owners, official name of the company, when it started to operate, etc)</ion-select-option>
-                    <ion-select-option value="Female">Artisanal miners </ion-select-option>
-                    <ion-select-option value="Female">Government security agencies (police, army)</ion-select-option>
-                    <ion-select-option value="Female">Politician</ion-select-option>
-                    <ion-select-option value="Female">Councilors</ion-select-option>
-                    <ion-select-option value="Female">Member of Parliament</ion-select-option>
+                <ion-select (change)="ivCompany(form.value)" placeholder="Please select" [(ngModel)]="new_case.description_of_perpetrator"
+                    name="description_of_perpetrator">
+                    <ion-select-option value="Mining company security guards">Mining company security guards</ion-select-option>
+                    <ion-select-option value="Artisanal miners ">Artisanal miners </ion-select-option>
+                    <ion-select-option value="Government security agencies (police, army)">Government security agencies
+                        (police, army)</ion-select-option>
+                    <ion-select-option value="Politician">Politician</ion-select-option>
+                    <ion-select-option value="Councilors">Councilors</ion-select-option>
+                    <ion-select-option value="Member of Parliament">Member of Parliament</ion-select-option>
                 </ion-select>
-                <!-- <ion-input type="number" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <!-- <ion-input type="text" [(ngModel)]="user.amount" name="amount"></ion-input> -->
             </ion-item>
 
             <ion-item>
@@ -184,30 +209,36 @@
                     Motivations behind the incident (Based on the victim’s personal assessment)
                 </ion-label>
 
-                <!-- <ion-input type="number" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <!-- <ion-input type="text" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <ion-select placeholder="Please select" [(ngModel)]="user.description" name="description">
-                    <ion-select-option value="Male">Political</ion-select-option>
-                    <ion-select-option value="Female">To conceal illicit activities and corruption</ion-select-option>
-                    <ion-select-option value="Male">To exercise Power</ion-select-option>
-                    <ion-select-option value="Female">To instill fear</ion-select-option>
-                    <ion-select-option value="Male">Economic interest</ion-select-option>
+                <ion-select placeholder="Please select" [(ngModel)]="new_case.motivations_behind_incident"
+                    name="motivations_behind_incident">
+                    <ion-select-option value="Political">Political</ion-select-option>
+                    <ion-select-option value="To conceal illicit activities and corruption">To conceal illicit
+                        activities and corruption</ion-select-option>
+                    <ion-select-option value="To exercise Power">To exercise Power</ion-select-option>
+                    <ion-select-option value="To instill fear">To instill fear</ion-select-option>
+                    <ion-select-option value="Economic interest">Economic interest</ion-select-option>
                 </ion-select>
+            </ion-item>
+
+            <hr><br>
+
+            <h2>Description of what transpired responding to the following questions</h2>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
+                    What happened?
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="new_case.what_happened" name="what_happened"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                    Description of what transpired responding to the following questions
+                    How it happened (This part should be accompanied with an option to upload
+                    videos, pictures, live streaming, audios.)
                 </ion-label>
-
-                <!-- <ion-input type="number" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <!-- <ion-input type="text" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <ion-select placeholder="Please select" [(ngModel)]="user.description" name="description">
-                    <ion-select-option value="Male">1. What happened?</ion-select-option>
-                    <ion-select-option value="Female">2. How it happened</ion-select-option>
-                    <ion-select-option value="Female">Note: This part should be accompanied with an option to upload videos, pictures, live streaming, audios.</ion-select-option>
-                </ion-select>
+                <ion-input type="text" [(ngModel)]="new_case.how_it_happened" name="how_it_happened"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -215,17 +246,41 @@
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                     Community Description
                 </ion-label>
-                <!-- <ion-input type="number" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <ion-input type="text" [(ngModel)]="user.amount" name="amount"></ion-input>
+
+                <!-- <ion-input type="text" [(ngModel)]="new_case.community_description" name="community_description"></ion-input> -->
+                <textarea rows="5" cols="35" [(ngModel)]="new_case.community_description" name="community_description"
+                    class="form-control"></textarea>
+            </ion-item>
+            <hr><br>
+
+            <h2>Contact Details of Reporter (Optional)</h2>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
+                    Phone Number of Reporter
+                </ion-label>
+
+                <ion-input type="number" aria-placeholder="0773XXXXXX" [(ngModel)]="new_case.reporter_phone"
+                    name="reporter_phone"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                    Contact details of reporting person (if willing to provide phone number and/or email address)
+                    Email of Reporter
                 </ion-label>
-                <!-- <ion-input type="number" [(ngModel)]="user.amount" name="amount"></ion-input> -->
-                <ion-input type="text" [(ngModel)]="user.amount" name="amount"></ion-input>
+
+                <ion-input type="email" [(ngModel)]="new_case.reporter_email" name="reporter_email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
+                    Address of Reporter
+                </ion-label>
+
+                <ion-input type="text" [(ngModel)]="new_case.reporter_address" name="reporter_address"></ion-input>
             </ion-item>
 
 
@@ -237,7 +292,8 @@
                 <ion-button type="file" (click)="selectImage()" name="invoice">Open Camera</ion-button>
             </ion-item>
 
-            <ion-button slot="end" fill="clear" class="shary" shape="round" icon-start expand="block" color="warning" tappable>
+            <ion-button slot="end" fill="clear" class="shary" shape="round" icon-start expand="block" color="warning"
+                tappable>
                 <ion-icon slot="icon-only" name="log-in"></ion-icon>
                 <p style="color: #1a1aff; ">Save Report</p>
             </ion-button>

@@ -93,6 +93,9 @@ export class AddstockNewPage implements OnInit {
         how_it_happened: "",
         community_description: "",
         evidence_files: null,
+        reporter_phone: null,
+        reporter_address: "",
+        reporter_email: "",
         location: "",
         latitude: 0,
         longitude: 0,
@@ -100,6 +103,15 @@ export class AddstockNewPage implements OnInit {
     }
 
     involves_company = 'false';
+
+    ivCompany(states){
+        console.log("status", states);
+        if(states = "Mining company security guards") {
+            this.involves_company = "true";
+        } else {
+            this.involves_company = "false"; 
+        }
+    }
 
     company = {
         user: JSON.parse(localStorage.getItem('user_id')),
