@@ -15,7 +15,6 @@ export class RegisterPage implements OnInit {
     cpassword: '',
     email: '',
     phone_number: 0,
-    business: '',
     username: '',
     first_name: '',
     last_name: '',
@@ -47,21 +46,21 @@ export class RegisterPage implements OnInit {
   //   this.router.navigateByUrl('/register');
   // }
 
-  presentAlert2() {
-    const alert = this.alertController.create({
-      header: 'Notice',
-      message: 'To register, visit the website',
-      subHeader: 'website link http://blindstick.herokuapp.com/register',
-      buttons: ['Dismiss']
-    }).then(alert => alert.present());
-  }
+  // presentAlert2() {
+  //   const alert = this.alertController.create({
+  //     header: 'Notice',
+  //     message: 'To register, visit the website',
+  //     subHeader: 'website link http://blindstick.herokuapp.com/register',
+  //     buttons: ['Dismiss']
+  //   }).then(alert => alert.present());
+  // }
 
 
   register() {
     if(this.user.password != this.user.cpassword) {
       this.presentAlert5();
     } else {
-      if (this.user.first_name == '' || this.user.username == '' || this.user.last_name == '' || this.user.business == '') {
+      if (this.user.first_name == '' || this.user.username == '' || this.user.last_name == '' || this.user.phone_number == 0) {
         this.presentAlert1();
       }
       else {

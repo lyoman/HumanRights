@@ -7,8 +7,8 @@ import {Observable} from 'rxjs';
 })
 export class AuthService {
 
-  // AUTH_SERVER_ADDRESS:  string  =  'http://smartaccounting.pythonanywhere.com/api/';
-  AUTH_SERVER_ADDRESS:  string  =  'http://localhost:8000/api/';
+  AUTH_SERVER_ADDRESS:  string  =  'http://humanrights.pythonanywhere.com/api/';
+  // AUTH_SERVER_ADDRESS:  string  =  'http://localhost:8000/api/';
 
   constructor(private httpClient: HttpClient) { }
 

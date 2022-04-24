@@ -11,19 +11,20 @@
 
 <ion-content class="ion-padding">
     <div *ngIf="!loading">
-        <ion-list>
-            <ion-item>
+        <ion-list *ngFor="let user of boughtStock" tappable (click)="boughtDetail(user);">
+            <h1 *ngIf="!user.read_status">There are no Cases yet</h1>
+            <ion-item *ngIf="user.read_status">
 
                 <ion-thumbnail slot="start">
                     <img src="../../assets/imgs/dashboard/accounting.png">
                 </ion-thumbnail>
 
                 <ion-label>
-                    <h1>{{ "Report Name" }} | {{ "" }}</h1>
+                    <h1>{{ user.type_of_violation }} | {{ "" }}</h1>
                     <h2 style="white-space: nowrap;
           overflow: hidden;
-          text-overflow: ellipsis;">{{ "Report Details" }}</h2>
-                    <h2>date: {{ user1 | date }} {{ user1 | date: "shortTime" }}</h2>
+          text-overflow: ellipsis;">{{ user.motivations_behind_incident }}</h2>
+                    <h2>date: {{ user.timestamp | date }} {{ user.timestamp | date: "shortTime" }}</h2>
                 </ion-label>
                 <ion-icon name="arrow-forward" item-right></ion-icon>
 

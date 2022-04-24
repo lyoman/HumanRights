@@ -12,11 +12,14 @@ import { ApiService } from '../services/api.service';
 })
 export class SellstockPage implements OnInit {
 
+
   plt: string;
   localhost:string = '';
   loading: any;
 
-  soldStock: any = [];
+  user1 = new Date();
+
+  boughtStock = [];
 
   constructor(
     private platform: Platform,
@@ -29,20 +32,19 @@ export class SellstockPage implements OnInit {
   }
 
   ngOnInit() {
-    this.get2();
+    this.get();
   }
 
-
-  get2() {
+  get() {
     this.loading = true;
-    this.apiService.getUsers1("new_stock/sold_stock_user/?user="+JSON.parse(localStorage.getItem('user_id'))).subscribe (data => {
-      console.log("data", data);
-      this.soldStock = data;
+    this.apiService.getUsers1("reportcase/report_case?user="+JSON.parse(localStorage.getItem('user_id'))).subscribe (data => {
+      console.log("data", data["results"]);
+      this.boughtStock = data["results"];
       this.loading = false;
-      if(this.soldStock.length == 0) {
+      if(this.boughtStock.length == 0) {
         this.presentAlert3();
       }
-      console.log(this.soldStock);
+      console.log(this.boughtStock);
     }, (err) => {
       console.log(err);
       this.loading = false;
@@ -52,7 +54,7 @@ export class SellstockPage implements OnInit {
 
   boughtDetail(news){
     this.navData.setParamData(news);
-    this.router.navigateByUrl('/sellstock/sellstock-view');
+    this.router.navigateByUrl('/addstock/addstock-view/'+news.id);
   }
 
 
@@ -67,8 +69,8 @@ export class SellstockPage implements OnInit {
   presentAlert3() {
     const alert = this.alertController.create({
     header: 'No saved data!',
-    message: 'You currently have no sold stock in the system',
-    subHeader: 'Sell stock and try again',
+    message: 'You currently have no stock in the system',
+    subHeader: 'Add stock and try again',
     buttons: ['Dismiss']}).then(alert=> alert.present());
   }
 

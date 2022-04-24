@@ -4,29 +4,27 @@
             <ion-back-button autoHide="false"></ion-back-button>
         </ion-buttons>
         <ion-title class="title" style="margin-right: 50px;" class="ion-text-center">
-            Sold Stock
+            View Unread Cases
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
     <div *ngIf="!loading">
-        <ion-list *ngFor="let user of soldStock" tappable (click)="boughtDetail(user);">
-            <ion-item>
+        <ion-list *ngFor="let user of boughtStock" tappable (click)="boughtDetail(user);">
+            <!-- <h1 *ngIf="user.read_status">There are no Cases yet</h1> -->
+            <ion-item *ngIf="!user.read_status">
 
                 <ion-thumbnail slot="start">
                     <img src="../../assets/imgs/dashboard/accounting.png">
                 </ion-thumbnail>
-                <!-- <ion-thumbnail slot="start" *ngIf="user.image == null">
-            <img src="../../assets/imgs/noimage.png">
-        </ion-thumbnail> -->
 
                 <ion-label>
-                    <h1>{{ user.stockname.name }} | ${{ user.amount }}</h1>
+                    <h1>{{ user.type_of_violation }} | {{ "" }}</h1>
                     <h2 style="white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;">{{ user.description }}</h2>
-                    <h3 style="font-size: large;color: black;">date: {{ user.timestamp | date }} {{ user.timestamp | date: "shortTime" }}</h3>
+          overflow: hidden;
+          text-overflow: ellipsis;">{{ user.motivations_behind_incident }}</h2>
+                    <h2>date: {{ user.timestamp | date }} {{ user.timestamp | date: "shortTime" }}</h2>
                 </ion-label>
                 <ion-icon name="arrow-forward" item-right></ion-icon>
 

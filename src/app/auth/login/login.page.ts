@@ -33,12 +33,11 @@ export class LoginPage implements OnInit {
     }
   }
 
-  login() {
-
+  login1() {
         this.navCtrl.navigateRoot('home');
   }
 
-  login1() {
+  login() {
     if (this.user.username == "" || this.user.password == "") {
       this.presentAlert1();
     }

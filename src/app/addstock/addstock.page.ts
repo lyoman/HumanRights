@@ -36,7 +36,7 @@ export class AddstockPage implements OnInit {
 
   get() {
     this.loading = true;
-    this.apiService.getUsers1("new_stock/new_stock/?user="+JSON.parse(localStorage.getItem('user_id'))).subscribe (data => {
+    this.apiService.getUsers1("reportcase/report_case?user="+JSON.parse(localStorage.getItem('user_id'))).subscribe (data => {
       console.log("data", data["results"]);
       this.boughtStock = data["results"];
       this.loading = false;

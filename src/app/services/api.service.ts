@@ -12,8 +12,8 @@ export class ApiService {
 
   // constructor() { }
 
-  // AUTH_SERVER_ADDRESS:  string  =  'https://smartaccounting.pythonanywhere.com/api/';
-  AUTH_SERVER_ADDRESS:  string  =  'http://localhost:8000/api/';
+  AUTH_SERVER_ADDRESS:  string  =  'https://humanrights.pythonanywhere.com/api/';
+  // AUTH_SERVER_ADDRESS:  string  =  'http://localhost:8000/api/';
 
   plt: string;
   localhost:string = '';

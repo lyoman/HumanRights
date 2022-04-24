@@ -13,12 +13,57 @@
     <div class="login-content">
         <form class="list-form">
 
+            <ion-list *ngIf="involves_company == 'true'">
+                <ion-list-header>
+                    <h2>Company Details</h2>
+                </ion-list-header>
+                <ion-item>
+                    <ion-label position="floating" style="color: #1a1aff;">
+                        <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+                        Comapany Name
+                    </ion-label>
+                    <ion-input type="text" [(ngModel)]="company.name" name="name"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="floating" style="color: #1a1aff;">
+                        <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+                        Location
+                    </ion-label>
+                    <ion-input type="text" [(ngModel)]="company.location" name="location"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="floating" style="color: #1a1aff;">
+                        <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+                        Owners
+                    </ion-label>
+                    <ion-input type="text" [(ngModel)]="company.owners" name="owners"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="floating" style="color: #1a1aff;">
+                        <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+                        Description
+                    </ion-label>
+                    <ion-input type="text" [(ngModel)]="company.description" name="description"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="floating" style="color: #1a1aff;">
+                        <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+                        When it started Operating
+                    </ion-label>
+                    <ion-input type="text" [(ngModel)]="company.when_it_started_operating" name="when_it_started_operating"></ion-input>
+                </ion-item>
+            </ion-list>
+
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
                     Date
                 </ion-label>
-                <ion-input type="date" [(ngModel)]="user.date" name="date"></ion-input>
+                <ion-input type="date" [(ngModel)]="new_case.date" name="date"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -27,8 +72,12 @@
                     Type of violation
                 </ion-label>
 
+                <ion-select class= "myCustomSelect" placeholder="Please select" [(ngModel)]="new_case.type_of_violation" name="type_of_violation">
+                    <ion-select-option *ngFor="let item of VIOLATION_TYPE" value="item.name" name="type_of_violation">{{ item.name }}</ion-select-option>
+                </ion-select>
+
                 <!-- <ion-input type="text" [(ngModel)]="user.name" name="Name"></ion-input> -->
-                <ion-select placeholder="Please select" [(ngModel)]="user.name" name="Name">
+                <!-- <ion-select placeholder="Please select" [(ngModel)]="user.name" name="Name">
                     <ion-select-option value="Forced Displacement">Forced Displacement </ion-select-option>
                     <ion-select-option value="Exposure to pollutants">Exposure to pollutants</ion-select-option>
                     <ion-select-option value="Forced Displacement">Loss of land or economic assets </ion-select-option>
@@ -41,7 +90,7 @@
                     <ion-select-option value="user">Forced and unpaid labour</ion-select-option>
                     <ion-select-option value="Forced Displacement">Child labour </ion-select-option>
                     <ion-select-option value="user">Murder/killings</ion-select-option>
-                </ion-select>
+                </ion-select> -->
             </ion-item>
 
             <ion-item>

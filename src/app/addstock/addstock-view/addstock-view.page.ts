@@ -27,8 +27,6 @@ export class AddstockViewPage implements OnInit {
   plt: string;
   localhost: string = '';
 
-  boughtStock = [];
-
   constructor(
     private navData: NavigateDataService,
     private apiService: ApiService,
@@ -41,36 +39,8 @@ export class AddstockViewPage implements OnInit {
   ngOnInit() {
     this.bought = this.navData.getParamData();
     console.log('bought', this.bought);
-    this.getOneSold(this.bought.id);
   }
 
-  getOneSold(id) {
-    this.loading2 = true;
-    this.apiService.getUsers1("new_stock/sold_stock/?stockname="+id).subscribe (data => {
-      console.log("data", data);
-      this.sold = data;
-
-      const sumall = this.sold.map(item => parseInt(item.amount)).reduce((prev, curr) => prev + curr, 0);
-      console.log(sumall);
-
-      this.totalAmount = sumall;
-
-
-      const sumall1 = this.sold.map(item => parseInt(item.quantity)).reduce((prev, curr) => prev + curr, 0);
-      console.log(sumall1);
-
-      this.totalQuantitySold = sumall1;
-
-      this.profitloss = (this.totalAmount - this.bought.amount);
-
-      this.loading2 = false;
-      console.log(this.sold);
-    }, (err) => {
-      console.log(err);
-      this.loading2 = false;
-      this.presentAlert(err.message);
-    });
-  }
 
   presentAlert(err) {
     const alert = this.alertController.create({
