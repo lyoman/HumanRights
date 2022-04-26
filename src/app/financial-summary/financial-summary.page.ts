@@ -13,26 +13,6 @@ import { ApiService } from '../services/api.service';
 export class FinancialSummaryPage implements OnInit {
 
   loading: any;
-  loading1: any;
-
-  searchText;
-  page = 1;
-  pageSize = 15;
-
-  userResults = [];
-
-  totalStockOrdered: any;
-  totalStockSold: any;
-
-  profitloss: any;
-  numberOfOrders: any;
-  numberOfQuantity: any;
-
-  totalAmountSold: any;
-  totalQuantitySold: any;
-
-  totalAmountBought: any;
-  totalQuantityBought: any;
 
   bought = [];
   sold: any = [];
@@ -41,6 +21,8 @@ export class FinancialSummaryPage implements OnInit {
   localhost:string = '';
 
   boughtStock = [];
+  users:any = [];
+  companies: any = [];
 
   constructor(
     private platform: Platform,
@@ -54,31 +36,18 @@ export class FinancialSummaryPage implements OnInit {
 
   ngOnInit() {
     // this.get();
+    this.getUsers();
+    this.getCompanies();
     this.get();
   }
 
 
   get() {
     this.loading = true;
-    this.apiService.getUsers1("new_stock/new_stock/?user="+JSON.parse(localStorage.getItem('user_id'))).subscribe (data => {
+    this.apiService.getUsers1("reportcase/report_case/").subscribe (data => {
       console.log("data", data["results"]);
       this.bought = data["results"];
-      // data = data["results"];
-      this.totalStockOrdered = this.bought.length;
-
-
-      const sumall = this.bought.map(item => parseInt(item.amount)).reduce((prev, curr) => prev + curr, 0);
-      console.log('amount bought',sumall);
-
-      this.totalAmountBought = sumall;
-
-
-      const sumall1 = this.bought.map(item => parseInt(item.quantity)).reduce((prev, curr) => prev + curr, 0);
-      console.log('quantity bought', sumall1);
-
-      this.totalQuantityBought = sumall1;
-      console.log(this.boughtStock);
-      this.get3();
+      // data = data["results
 
       this.loading = false;
       console.log(this.bought);
@@ -89,38 +58,38 @@ export class FinancialSummaryPage implements OnInit {
     });
   }
 
+  getUsers() {
+    // this.loading = true;
+    this.apiService.getUsers1("users/").subscribe (data => {
+      console.log("data", data);
+      this.users = data;
+      // data = data["results
 
-  get3() {
-    this.apiService.getUsers1("new_stock/sold_stock_user/?user="+JSON.parse(localStorage.getItem('user_id'))).subscribe (data => {
-      console.log('res', data);
-      console.log('all added stock', data);
-
-      this.loading1 = false;
-      console.log('user sold stock', data);
-      this.sold = data;
-
-      this.totalStockSold = this.sold.length;
-
-      const sumall = this.sold.map(item => parseInt(item.amount)).reduce((prev, curr) => prev + curr, 0);
-      console.log(sumall);
-
-      this.totalAmountSold = sumall;
-
-
-      const sumall1 = this.sold.map(item => parseInt(item.quantity)).reduce((prev, curr) => prev + curr, 0);
-      console.log(sumall1);
-
-      this.totalQuantitySold = sumall1;
-
-      this.profitloss = (this.totalAmountSold - this.totalAmountBought);
-      console.log("this.profitloss", this.profitloss);
+      // this.loading = false;
+      console.log(this.users);
     }, (err) => {
       console.log(err);
-      this.loading = false;
-      // this.presentAlert(err.message);
-    })
+      // this.loading = false;
+      this.presentAlert(err.message);
+    });
   }
 
+
+  getCompanies() {
+    // this.loading = true;
+    this.apiService.getUsers1("reportcase/company/").subscribe (data => {
+      console.log("data", data);
+      this.companies = data;
+      // data = data["results
+
+      // this.loading = false;
+      console.log(this.companies);
+    }, (err) => {
+      console.log(err);
+      // this.loading = false;
+      this.presentAlert(err.message);
+    });
+  }
 
   presentAlert(err) {
     const alert = this.alertController.create({

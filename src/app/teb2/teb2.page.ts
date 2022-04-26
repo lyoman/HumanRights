@@ -15,6 +15,9 @@ export class Teb2Page implements OnInit {
   response: any;
   response1: any;
 
+  is_superuser = localStorage.getItem('is_superuser');
+  is_staff = localStorage.getItem('is_staff');
+
   constructor(
     public router:Router, 
     ) { 

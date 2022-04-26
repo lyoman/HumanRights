@@ -77,36 +77,37 @@ export class AddstockNewPage implements OnInit {
 
     new_case = {
         user: JSON.parse(localStorage.getItem('user_id')),
-        company: null,
+        company: "",
         date_reported: new Date(),
-        type_of_violation: null,
-        description_of_victims: null,
+        type_of_violation: "",
+        description_of_victims: "",
         names_of_vitims: "",
         victim_age: "",
-        victim_gender: null,
+        victim_gender: "",
         describe_gender: "",
         victim_phone_number: "",
         victim_address: "",
-        description_of_perpetrator: null,
-        motivations_behind_incident: null,
+        description_of_perpetrator: "",
+        motivations_behind_incident: "",
         what_happened: "",
         how_it_happened: "",
         community_description: "",
-        evidence_files: null,
-        reporter_phone: null,
+        reporter_phone: 0,
         reporter_address: "",
         reporter_email: "",
         location: "",
         latitude: 0,
         longitude: 0,
-        identity_verification: null
+        // identity_verification: "",
+        // evidence_files: ""
     }
 
     involves_company = 'false';
 
     ivCompany(states){
+        // console.log("status leo man");
         console.log("status", states);
-        if(states = "Mining company security guards") {
+        if(states == "Mining company security guards") {
             this.involves_company = "true";
         } else {
             this.involves_company = "false"; 
@@ -302,33 +303,25 @@ export class AddstockNewPage implements OnInit {
     }
 
 
-    async register(file: LocalFile) {
-        if (this.user.name == "" || this.user.amount == 0 || this.user.quantity == 0) {
+    async register() {
+        if (
+            this.new_case.type_of_violation == "" || 
+            this.new_case.names_of_vitims == "" || 
+            this.new_case.what_happened == ""
+            ) {
             this.presentAlert1();
         }
         else {
 
-            // const uploadData = new FormData();
+            // const response = await fetch(file.data);
+            // const blob = await response.blob();
+            // const formData = new FormData();
+            // formData.append('invoice', blob, file.name);
 
-            // // uploadData.append('dateOfDelivery', this.preformForm.get('dateOfDelivery').value);
-
-            // if (this.fileToUpload) {
-            //     uploadData.append('coa', this.fileToUpload, this.fileToUpload.name);
-            // }
-            // if (this.fileToUpload == null) {
-            //     this.toastr.error('Error', 'Please attach a file.');
-            //     this.loading = false;
-            // }
-
-            const response = await fetch(file.data);
-            const blob = await response.blob();
-            const formData = new FormData();
-            formData.append('invoice', blob, file.name);
-
-            this.user.invoice = formData.append('invoice', blob, file.name);
+            // this.user.invoice = formData.append('invoice', blob, file.name);
 
             this.loading = true;
-            this.authService.register('new_stock/new_stock/new/', this.user).subscribe((res) => {
+            this.authService.register('reportcase/report_case/new/', this.new_case).subscribe((res) => {
 
                 console.log(res);
                 this.loading = false;
@@ -346,7 +339,7 @@ export class AddstockNewPage implements OnInit {
         const alert = this.alertController.create({
             header: 'Authentication Error!',
             message: err,
-            subHeader: 'Failed to Add stock',
+            subHeader: 'Failed to Add report',
             buttons: ['Dismiss']
         }).then(alert => alert.present());
     }
@@ -354,7 +347,7 @@ export class AddstockNewPage implements OnInit {
     presentAlert1() {
         const alert = this.alertController.create({
             header: 'Error!',
-            message: 'Please fill in all fields in order to login',
+            message: 'Please fill in all fields in order to submit report',
             subHeader: 'Fill in all fields',
             buttons: ['Dismiss']
         }).then(alert => alert.present());

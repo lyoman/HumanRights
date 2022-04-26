@@ -22,26 +22,26 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'View Unread reports',
-      url: '/sellstock/sellstock-new',
+      url: '/sellstock',
       icon: 'archive'
     },
     {
-      title: 'View All Reports',
+      title: 'Statistics',
       url: '/financial-summary',
       icon: 'book'
     },
-    {
-      title: 'Help',
-      url: '/tebs/teb3',
-      icon: 'play'
-    },
+    // {
+    //   title: 'Help',
+    //   url: '/tebs/teb3',
+    //   icon: 'play'
+    // },
     {
       title: 'Contact',
       url: '/contactus',
       icon: 'call'
     },
     {
-      title: 'About',
+      title: 'Profile',
       url: '/aboutus',
       icon: 'information-circle'
     }

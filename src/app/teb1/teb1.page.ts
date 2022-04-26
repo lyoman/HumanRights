@@ -35,6 +35,7 @@ export class Teb1Page implements OnInit {
   ios_put_unrestricted = 0;
   ios_delete_unrestricted = 0;
   // More variables for restricted API calls
+  users: any = [];
 
   constructor(
     private platform: Platform,
@@ -49,6 +50,25 @@ export class Teb1Page implements OnInit {
 
   ngOnInit() {
     // this.getDate();
+    this.getUsers(localStorage.getItem('user_id'));
+  }
+
+  getUsers(id) {
+    // this.loading = true;
+    this.apiService.getUsers1("users/user_detail/"+id).subscribe (data => {
+      console.log("data", data);
+      this.users = data;
+      localStorage.setItem('is_superuser', data['is_superuser']);
+      localStorage.setItem('is_staff', data['is_staff']);
+      // data = data["results
+
+      // this.loading = false;
+      console.log(this.users);
+    }, (err) => {
+      console.log(err);
+      // this.loading = false;
+      this.presentAlert(err.message);
+    });
   }
 
 

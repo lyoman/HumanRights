@@ -25,6 +25,167 @@
                     </ion-select>
                 </ion-item>
             </form> -->
+
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+                    Date
+                </ion-label>
+                <ion-input type="date" [(ngModel)]="new_case.date" name="date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="person" item-start class="text-warning"></ion-icon>
+                    Type of violation
+                </ion-label>
+
+                <!-- <ion-select class="myCustomSelect" placeholder="Please select" [(ngModel)]="new_case.type_of_violation"
+                    name="type_of_violation">
+                    <ion-select-option *ngFor="let item of VIOLATION_TYPE" value="item.name">{{
+                        item.name }}</ion-select-option>
+                </ion-select> -->
+
+
+                <ion-select placeholder="Please select" [(ngModel)]="new_case.type_of_violation"
+                    name="type_of_violation">
+                    <ion-select-option value="Forced Displacement">Forced Displacement </ion-select-option>
+                    <ion-select-option value="Exposure to pollutants">Exposure to pollutants</ion-select-option>
+                    <ion-select-option value="Loss of land or economic assets">Loss of land or economic assets
+                    </ion-select-option>
+                    <ion-select-option value="Desecration of cultural heritage including graves">Desecration of cultural
+                        heritage including graves</ion-select-option>
+                    <ion-select-option value="Torture and intimidation / harrassment">Torture and intimidation /
+                        harrassment </ion-select-option>
+                    <ion-select-option value="Curtailed freedom of movement">Curtailed freedom of movement
+                    </ion-select-option>
+                    <ion-select-option value="Exposure to degraded environment">Exposure to degraded environment
+                    </ion-select-option>
+                    <ion-select-option value="Limited access to water">Limited access to water</ion-select-option>
+                    <ion-select-option value="Denied access to social services">Denied access to social services like
+                        Health facilities, School, Markets place </ion-select-option>
+                    <ion-select-option value="Forced and unpaid labour">Forced and unpaid labour</ion-select-option>
+                    <ion-select-option value="Child labour">Child labour </ion-select-option>
+                    <ion-select-option value="Murder/killings">Murder/killings</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
+                    Location
+                </ion-label>
+
+                <ion-input type="text" [(ngModel)]="new_case.location" name="location"></ion-input>
+            </ion-item>
+
+            <hr><br>
+
+            <h2>Details of the Victims</h2>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
+                    Description of the Victims
+                </ion-label>
+                <ion-select placeholder="Please select" [(ngModel)]="new_case.description_of_victims"
+                    name="description_of_victims">
+                    <ion-select-option value="gurdian">Community member (individual/group)</ion-select-option>
+                    <ion-select-option value="Women">Women</ion-select-option>
+                    <ion-select-option value="Girls">Girls</ion-select-option>
+                    <ion-select-option value="Youth">Youth</ion-select-option>
+                    <ion-select-option value="Household">Household</ion-select-option>
+                    <ion-select-option value="Mining company ">Mining company </ion-select-option>
+                    <ion-select-option value="Traditional leader">Traditional leader</ion-select-option>
+                    <ion-select-option value="Farmer">Farmer</ion-select-option>
+                    <ion-select-option value="Community activist">Community activist</ion-select-option>
+                    <ion-select-option value="School children">School children</ion-select-option>
+                </ion-select>
+
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="briefcase" item-start class="text-warning"></ion-icon>
+                    Name(s) of victims or Alias
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="new_case.names_of_vitims" name="names_of_vitims"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="briefcase" item-start class="text-warning"></ion-icon>
+                    Age of victim
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="new_case.victim_age" name="victim_age"></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
+                    Gender of victim
+                </ion-label>
+                <ion-select placeholder="Please select" [(ngModel)]="new_case.victim_gender" name="victim_gender">
+                    <ion-select-option value="Male">Male</ion-select-option>
+                    <ion-select-option value="Female">Female</ion-select-option>
+                    <!-- <ion-select-option value="Male and Female">Male & Female</ion-select-option> -->
+                </ion-select>
+
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
+                    Describe Gender of victims (Optional)
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="new_case.describe_gender" name="describe_gender"></ion-input>
+
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
+                    Contact details of victim
+                </ion-label>
+
+                <ion-input type="text" [(ngModel)]="new_case.victim_phone_number" name="victim_phone_number">
+                </ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="briefcase" item-start class="text-warning"></ion-icon>
+                    Victim Address
+                </ion-label>
+                <ion-input type="text" [(ngModel)]="new_case.victim_address" name="victim_address"></ion-input>
+            </ion-item>
+
+            <hr><br>
+
+            <h2>Details of the Perpetrator</h2>
+
+            <ion-item>
+                <!-- <form> -->
+                <ion-label position="floating" style="color: #1a1aff;">
+                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
+                    Description of the Perpetrator
+                </ion-label>
+                <ion-select (ngModelChange)="ivCompany($event)" placeholder="Please select"
+                    [(ngModel)]="new_case.description_of_perpetrator" name="description_of_perpetrator">
+                    <ion-select-option value="Mining company security guards">Mining company security guards
+                    </ion-select-option>
+                    <ion-select-option value="Artisanal miners ">Artisanal miners </ion-select-option>
+                    <ion-select-option value="Government security agencies">Government security agencies
+                        (police, army)</ion-select-option>
+                    <ion-select-option value="Politician">Politician</ion-select-option>
+                    <ion-select-option value="Councilors">Councilors</ion-select-option>
+                    <ion-select-option value="Member of Parliament">Member of Parliament</ion-select-option>
+                </ion-select>
+                <!-- </form> -->
+            </ion-item>
+
             <ion-list *ngIf="involves_company == 'true'">
                 <ion-list-header>
                     <h2>Company Details</h2>
@@ -73,138 +234,6 @@
 
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
-                    Date
-                </ion-label>
-                <ion-input type="date" [(ngModel)]="new_case.date" name="date"></ion-input>
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="person" item-start class="text-warning"></ion-icon>
-                    Type of violation
-                </ion-label>
-
-                <ion-select class="myCustomSelect" placeholder="Please select" [(ngModel)]="new_case.type_of_violation"
-                    name="type_of_violation">
-                    <ion-select-option *ngFor="let item of VIOLATION_TYPE" value="item.name" name="type_of_violation">{{
-                        item.name }}</ion-select-option>
-                </ion-select>
-
-                <!-- <ion-input type="text" [(ngModel)]="user.name" name="Name"></ion-input> -->
-                <!-- <ion-select placeholder="Please select" [(ngModel)]="user.name" name="Name">
-                    <ion-select-option value="Forced Displacement">Forced Displacement </ion-select-option>
-                    <ion-select-option value="Exposure to pollutants">Exposure to pollutants</ion-select-option>
-                    <ion-select-option value="Forced Displacement">Loss of land or economic assets </ion-select-option>
-                    <ion-select-option value="user">Desecration of cultural heritage including graves</ion-select-option>
-                    <ion-select-option value="Forced Displacement">Torture and intimidation / harrassment </ion-select-option>
-                    <ion-select-option value="user">Curtailed freedom of movement</ion-select-option>
-                    <ion-select-option value="Forced Displacement">Exposure to degraded environment </ion-select-option>
-                    <ion-select-option value="user">Limited access to water</ion-select-option>
-                    <ion-select-option value="Forced Displacement">Denied access to social services like Health facilities, School, Markets place </ion-select-option>
-                    <ion-select-option value="user">Forced and unpaid labour</ion-select-option>
-                    <ion-select-option value="Forced Displacement">Child labour </ion-select-option>
-                    <ion-select-option value="user">Murder/killings</ion-select-option>
-                </ion-select> -->
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                    Location
-                </ion-label>
-
-                <ion-input type="text" [(ngModel)]="new_case.location" name="location"></ion-input>
-            </ion-item>
-
-            <hr><br>
-
-            <h2>Details of the Victims</h2>
-
-            <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
-                    Description of the Victims
-                </ion-label>
-                <ion-select placeholder="Please select" [(ngModel)]="new_case.description_of_victims"
-                    name="description_of_victims">
-                    <ion-select-option value="gurdian">Community member (individual/group)</ion-select-option>
-                    <ion-select-option value="user">Women</ion-select-option>
-                    <ion-select-option value="user">Girls</ion-select-option>
-                    <ion-select-option value="user">Youth</ion-select-option>
-                    <ion-select-option value="user">Household</ion-select-option>
-                    <ion-select-option value="user">Mining company </ion-select-option>
-                    <ion-select-option value="user">Traditional leader</ion-select-option>
-                    <ion-select-option value="user">Farmer</ion-select-option>
-                    <ion-select-option value="user">Community activist</ion-select-option>
-                    <ion-select-option value="user">School children</ion-select-option>
-                </ion-select>
-                <!-- <ion-input type="text" [(ngModel)]="user.description" name="description"></ion-input> -->
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="briefcase" item-start class="text-warning"></ion-icon>
-                    Name(s) of victims or Alias
-                </ion-label>
-                <ion-input type="text" [(ngModel)]="new_case.names_of_vitims" name="names_of_vitims"></ion-input>
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="briefcase" item-start class="text-warning"></ion-icon>
-                    Age of victim
-                </ion-label>
-                <ion-input type="number" [(ngModel)]="new_case.victim_age" name="victim_age"></ion-input>
-            </ion-item>
-
-
-            <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
-                    Gender of victim
-                </ion-label>
-                <ion-select placeholder="Please select" [(ngModel)]="new_case.victim_gender" name="victim_gender">
-                    <ion-select-option value="Male">Male</ion-select-option>
-                    <ion-select-option value="Female">Female</ion-select-option>
-                </ion-select>
-                <!-- <ion-input type="text" [(ngModel)]="user.description" name="description"></ion-input> -->
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                    Contact details of victim
-                </ion-label>
-
-                <ion-input type="text" [(ngModel)]="new_case.victim_phone_number" name="victim_phone_number">
-                </ion-input>
-            </ion-item>
-
-            <hr><br>
-
-            <h2>Details of the Perpetrator</h2>
-
-            <ion-item>
-
-                <ion-label position="floating" style="color: #1a1aff;">
-                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                    Description of the Perpetrator
-                </ion-label>
-                <ion-select (change)="ivCompany(form.value)" placeholder="Please select" [(ngModel)]="new_case.description_of_perpetrator"
-                    name="description_of_perpetrator">
-                    <ion-select-option value="Mining company security guards">Mining company security guards</ion-select-option>
-                    <ion-select-option value="Artisanal miners ">Artisanal miners </ion-select-option>
-                    <ion-select-option value="Government security agencies (police, army)">Government security agencies
-                        (police, army)</ion-select-option>
-                    <ion-select-option value="Politician">Politician</ion-select-option>
-                    <ion-select-option value="Councilors">Councilors</ion-select-option>
-                    <ion-select-option value="Member of Parliament">Member of Parliament</ion-select-option>
-                </ion-select>
-            </ion-item>
-
-            <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                     Motivations behind the incident (Based on the victim’s personal assessment)
                 </ion-label>
@@ -242,7 +271,7 @@
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating" style="color: #1a1aff;">
+                <ion-label style="color: #1a1aff;">
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                     Community Description
                 </ion-label>
@@ -292,8 +321,8 @@
                 <ion-button type="file" (click)="selectImage()" name="invoice">Open Camera</ion-button>
             </ion-item>
 
-            <ion-button slot="end" fill="clear" class="shary" shape="round" icon-start expand="block" color="warning"
-                tappable>
+            <ion-button (click)="register()" slot="end" fill="clear" class="shary" shape="round" icon-start
+                expand="block" color="warning" tappable>
                 <ion-icon slot="icon-only" name="log-in"></ion-icon>
                 <p style="color: #1a1aff; ">Save Report</p>
             </ion-button>
