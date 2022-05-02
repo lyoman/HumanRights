@@ -11,7 +11,7 @@ export class Teb2Page implements OnInit {
   username = JSON.parse(localStorage.getItem("username"));
 
   token: any;
-  users :any;
+  users: any;
   response: any;
   response1: any;
 
@@ -19,10 +19,11 @@ export class Teb2Page implements OnInit {
   is_staff = localStorage.getItem('is_staff');
 
   constructor(
-    public router:Router, 
-    ) { 
-
-}
+    public router: Router,
+  ) {
+    console.log("is_superuser", this.is_superuser);
+    console.log("is_staff", this.is_staff);
+  }
 
   ngOnInit() {
   }

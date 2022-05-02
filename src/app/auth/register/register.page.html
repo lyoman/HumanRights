@@ -10,22 +10,25 @@
 
 
 <ion-content class="ion-padding animated fadeIn login auth-page">
-    <div class="login-content">
+    <div class="login-content" *ngIf="!loading">
 
         <form class="list-form">
+
+            <p class="error" *ngIf="errorHead">Fill in all Required fields *</p>
 
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="person" item-start class="text-warning"></ion-icon>
-                    Username
+                    Username  <span *ngIf="errorUsername" class="error">*</span>
                 </ion-label>
-                <ion-input type="text" [(ngModel)]="user.username" name="username"></ion-input>
+                <ion-input type="text" [(ngModel)]="user.username" name="username"></ion-input>  
+                <!-- <span class="error">*</span> -->
             </ion-item>
 
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="person" item-start class="text-warning"></ion-icon>
-                    First Name
+                    First Name  <span *ngIf="errorName" class="error">*</span>
                 </ion-label>
                 <ion-input type="text" [(ngModel)]="user.first_name" name="first_name"></ion-input>
             </ion-item>
@@ -33,7 +36,7 @@
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="person" item-start class="text-warning"></ion-icon>
-                    Last Name
+                    Last Name  <span *ngIf="errorLast" class="error">*</span>
                 </ion-label>
                 <ion-input type="text" [(ngModel)]="user.last_name" name="last_name"></ion-input>
             </ion-item>
@@ -41,7 +44,7 @@
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="call" item-start class="text-warning"></ion-icon>
-                    Phone Number
+                    Phone Number  <span *ngIf="errorPhone" class="error">*</span>
                 </ion-label>
                 <ion-input type="number" [(ngModel)]="user.phone_number" name="phone_number"></ion-input>
             </ion-item>
@@ -57,7 +60,7 @@
             <ion-item>
                 <ion-label position="floating" style="color: #1a1aff;">
                     <ion-icon name="chatbubbles" item-start class="text-warning"></ion-icon>
-                    Email
+                    Email  <span *ngIf="errorEmail" class="error">*</span>
                 </ion-label>
                 <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
             </ion-item>
@@ -65,7 +68,7 @@
             <ion-item>
                 <ion-label position="floating" style="color:#1a1aff;">
                     <ion-icon name="log-in" item-start class="text-warning"></ion-icon>
-                    Password
+                    Password  <span *ngIf="errorPassword" class="error">*</span>
                 </ion-label>
                 <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
             </ion-item>
@@ -73,7 +76,7 @@
             <ion-item>
                 <ion-label position="floating" style="color:#1a1aff;">
                     <ion-icon name="log-in" item-start class="text-warning"></ion-icon>
-                    Confirm Password
+                    Confirm Password  <span *ngIf="errorCpassword" class="error">*</span>
                 </ion-label>
                 <ion-input type="password" [(ngModel)]="user.cpassword" name="cpassword"></ion-input>
             </ion-item>
@@ -99,5 +102,12 @@
       </span>
         </div>
 
+    </div>
+
+
+    <div *ngIf="loading">
+        <div class="text-center" style="align-content: center;">
+            <img class="ion-text-center" style="width: 100%;margin: auto;" src="assets/imgs/tenor.gif">
+        </div>
     </div>
 </ion-content>

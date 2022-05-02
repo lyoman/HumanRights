@@ -41,7 +41,7 @@ export class AddstockPage implements OnInit {
       this.boughtStock = data["results"];
       this.loading = false;
       if(this.boughtStock.length == 0) {
-        this.presentAlert3();
+        this.presentAlert4("You have no saved data yet!");
       }
       console.log(this.boughtStock);
     }, (err) => {
@@ -70,6 +70,14 @@ export class AddstockPage implements OnInit {
     header: 'No saved data!',
     message: 'You currently have no stock in the system',
     subHeader: 'Add stock and try again',
+    buttons: ['Dismiss']}).then(alert=> alert.present());
+  }
+
+  presentAlert4(err) {
+    const alert = this.alertController.create({
+    header: 'No saved data!',
+    message: err,
+    subHeader: 'Add a case and try again',
     buttons: ['Dismiss']}).then(alert=> alert.present());
   }
 

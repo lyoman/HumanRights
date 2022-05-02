@@ -12,8 +12,8 @@
 <ion-content class="ion-padding">
     <div *ngIf="!loading">
         <ion-list *ngFor="let user of boughtStock" tappable (click)="boughtDetail(user);">
-            <!-- <h1 *ngIf="user.read_status">There are no Cases yet</h1> -->
-            <ion-item *ngIf="!user.read_status">
+            <!-- <h1 *ngIf="user.read_status == false">There are no Cases yet</h1> -->
+            <ion-item *ngIf="user.read_status == false">
 
                 <ion-thumbnail slot="start">
                     <img src="../../assets/imgs/dashboard/accounting.png">

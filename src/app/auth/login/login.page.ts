@@ -59,10 +59,16 @@ export class LoginPage implements OnInit {
         this.navCtrl.navigateRoot('home');
 
       }, (err) => {
-        console.log(err);
-        this.error = err;
         this.loading = false;
+        if(err.error.status == 400){
+          this.presentAlert(err.error.non_field_errors[0]);
+        } else {
+          this.error = err;
+ 
         this.presentAlert(err.message);
+        }
+        console.log(err);
+        
       });
     }
   }

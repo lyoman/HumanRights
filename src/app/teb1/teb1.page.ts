@@ -37,6 +37,9 @@ export class Teb1Page implements OnInit {
   // More variables for restricted API calls
   users: any = [];
 
+  is_superuser = localStorage.getItem('is_superuser');
+  is_staff = localStorage.getItem('is_staff');
+
   constructor(
     private platform: Platform,
     public router: Router, 
@@ -45,7 +48,9 @@ export class Teb1Page implements OnInit {
     ) {
     this.plt = this.platform.is('mobileweb') ? 'web' :
       this.platform.is('ios') ? 'ios' : 'android'
-      this.localhost ="smartaccounting.pythonanywhere.com/api/"
+      this.localhost ="smartaccounting.pythonanywhere.com/api/";
+      console.log("is_superuser", this.is_superuser);
+      console.log("is_staff", this.is_staff);
   }
 
   ngOnInit() {
@@ -56,14 +61,14 @@ export class Teb1Page implements OnInit {
   getUsers(id) {
     // this.loading = true;
     this.apiService.getUsers1("users/user_detail/"+id).subscribe (data => {
-      console.log("data", data);
+      // console.log("data", data);
       this.users = data;
-      localStorage.setItem('is_superuser', data['is_superuser']);
-      localStorage.setItem('is_staff', data['is_staff']);
+      localStorage.setItem('is_superuser', JSON.stringify(data['is_superuser']));
+      localStorage.setItem('is_staff', JSON.stringify(data['is_staff']));
       // data = data["results
 
       // this.loading = false;
-      console.log(this.users);
+      // console.log(this.users);
     }, (err) => {
       console.log(err);
       // this.loading = false;

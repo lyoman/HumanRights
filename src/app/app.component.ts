@@ -21,15 +21,15 @@ export class AppComponent implements OnInit {
       icon: 'paper-plane'
     },
     {
-      title: 'View Unread reports',
-      url: '/sellstock',
+      title: 'View My reports',
+      url: '/addstock',
       icon: 'archive'
     },
-    {
-      title: 'Statistics',
-      url: '/financial-summary',
-      icon: 'book'
-    },
+    // {
+    //   title: 'Statistics',
+    //   url: '/financial-summary',
+    //   icon: 'book'
+    // },
     // {
     //   title: 'Help',
     //   url: '/tebs/teb3',

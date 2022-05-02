@@ -22,6 +22,15 @@ export class RegisterPage implements OnInit {
     date: new Date()
   };
 
+  errorName;
+  errorLast;
+  errorUsername;
+  errorPhone;
+  errorEmail;
+  errorPassword;
+  errorCpassword;
+  errorHead;
+
   loading: any;
 
   constructor(
@@ -57,10 +66,47 @@ export class RegisterPage implements OnInit {
 
 
   register() {
+
     if(this.user.password != this.user.cpassword) {
       this.presentAlert5();
     } else {
-      if (this.user.first_name == '' || this.user.username == '' || this.user.last_name == '' || this.user.phone_number == 0) {
+      if (this.user.first_name == ''){
+        this.errorName = true;
+        this.errorHead = true;
+      }
+      if (this.user.last_name == ''){
+        this.errorLast = true;
+        this.errorHead = true;
+      }
+      if (this.user.username == ''){
+        this.errorUsername = true;
+        this.errorHead = true;
+      }
+      if (this.user.email == ''){
+        this.errorEmail = true;
+        this.errorHead = true;
+      }
+      if (this.user.password == ''){
+        this.errorPassword = true;
+        this.errorHead = true;
+      }
+      if (this.user.cpassword == ''){
+        this.errorCpassword = true;
+        this.errorHead = true;
+      }
+      if (this.user.phone_number == 0){
+        this.errorPhone = true;
+        this.errorHead = true;
+      }
+  
+      if (this.user.first_name == '' || 
+      this.user.username == '' || 
+      this.user.last_name == '' || 
+      this.user.phone_number == 0 || 
+      this.user.email == '' ||
+      this.user.password == '' ||
+      this.user.cpassword == ''
+      ) {
         this.presentAlert1();
       }
       else {

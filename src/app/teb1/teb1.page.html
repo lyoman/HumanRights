@@ -22,7 +22,7 @@
 
     <!-- <h1 style="color: #4d4dff;text-align: center;">Smart Accounting mobile application</h1> -->
 
-    <ion-grid tappable>
+    <!-- <ion-grid tappable>
         <ion-row>
             <ion-col [ngStyle]="{'background-position': 'center top','background-repeat': 'no-repeat','background-size': 'cover','max-width': '100%', 'height': 'auto'}" style="max-width: 100%;height: auto;" class="news">
                 <ion-img src="../../assets/imgs/banner.jpg"></ion-img>
@@ -31,7 +31,7 @@
                 </h1>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 
     <!-- <ion-footer> -->
     <ion-grid>
@@ -44,7 +44,7 @@
                 </ion-card>
             </ion-col>
 
-            <ion-col size="4" no-padding [routerLink]="['/sellstock']">
+            <ion-col size="4" no-padding [routerLink]="['/sellstock']" *ngIf="is_superuser == 'true'">
                 <ion-card>
                     <br>
                     <img src="../../assets/imgs/dashboard/acquisition.png">
