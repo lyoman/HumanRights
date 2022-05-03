@@ -45,7 +45,11 @@ const routes: Routes = [
   {
     path: 'financial-summary',
     loadChildren: () => import('./financial-summary/financial-summary.module').then( m => m.FinancialSummaryPageModule)
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+
 
 
 ];
