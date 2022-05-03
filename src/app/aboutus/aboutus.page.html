@@ -11,6 +11,19 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+
+    <div>
+        <h1>OUR VISION</h1>
+        <p>Justice and dignity for communities affected by extractive industries</p><br><hr>
+
+        <h1>OUR MISSION</h1>
+        <p>To defend, protect and support communities affected by extractive industries through research, community empowerment and community driven advocacy</p><br><hr>
+
+        <h1>OUR CORE VALUES</h1>
+        <p>1. Non-Discriminatory</p><br>
+        <p>2. Accountability and Transparency </p><br>
+        <p>3. Inclusiveness</p><br>
+    </div>
     <!-- OUR VISION
 Justice and dignity for communities affected by extractive industries
 
@@ -23,36 +36,5 @@ OUR CORE VALUES
 2. Accountability and Transparency 
 
 3. Inclusiveness -->
-    <div>
-        <img src="assets/imgs/dashboard/patient.png">
-    </div>
-    <div *ngIf="!loading">
-        <div *ngIf="users">
-            <h2 style="text-align: left;font-size: larger;">Username</h2>
-                <ion-label>{{users.username}}</ion-label><br><hr>
 
-                <h2 style="text-align: left;font-size: larger;">Email</h2>
-                <ion-label>{{users.email}}</ion-label><br><hr>
-
-
-                <h2 style="text-align: left;font-size: larger;">Date Joined</h2>
-                <ion-label>{{users.timestamp | date}}</ion-label><br><hr>
-
-                <h2 *ngIf="users.phone_number" style="text-align: left;font-size: larger;">Phone Number</h2>
-                <ion-label *ngIf="users.phone_number">{{users.phone_number}}</ion-label><br><hr>
-
-                <h2 *ngIf="users.first_name" style="text-align: left;font-size: larger;">First Name</h2>
-                <ion-label *ngIf="users.first_name">{{users.first_name}}</ion-label><br><hr>
-
-                <h2 *ngIf="users.last_name" style="text-align: left;font-size: larger;">Last Name</h2>
-                <ion-label *ngIf="users.last_name">{{users.last_name}}</ion-label><br><hr>
-        </div>
-    </div>
-
-
-    <div *ngIf="loading">
-        <div class="text-center" style="align-content: center;">
-            <img class="ion-text-center" style="width: 100%;margin: auto;" src="assets/imgs/tenor.gif">
-        </div>
-    </div>
 </ion-content>

@@ -6,17 +6,17 @@
 //     --background: #062f77;
 // }
 ion-button {
-    --background-activated: #1a1aff;
-    --color: #1a1aff;
+    --background-activated: #6d0101;
+    --color: #6d0101;
     --color-activated: #990099;
-    --border-color: #1a1aff;
+    --border-color: #6d0101;
 }
 
 // .shary {
-//     --background-activated: #1a1aff;
-//     --color: #1a1aff;
+//     --background-activated: #6d0101;
+//     --color: #6d0101;
 //     --color-activated: #990099;
-//     border-color: #1a1aff;
+//     border-color: #6d0101;
 // }
 ion-content {
     --background: none;
@@ -39,7 +39,7 @@ ion-avatar {
 }
 
 .primary-bg {
-    --background-color: #1a1aff !important;
+    --background-color: #6d0101 !important;
 }
 
 .secondary-bg {
@@ -71,21 +71,21 @@ ion-avatar {
 }
 
 .profile-bg {
-    --background-image: linear-gradient(135deg, #222, #1a1aff, #E7E9E5);
+    --background-image: linear-gradient(135deg, #222, #6d0101, #E7E9E5);
 }
 
 //
 //
 .text-primary {
-    color: #1a1aff;
+    color: #6d0101;
 }
 
 .text-secondary {
-    color: #1a1aff;
+    color: #6d0101;
 }
 
 .text-warning {
-    color: #1a1aff;
+    color: #6d0101;
 }
 
 .text-green {
@@ -375,10 +375,10 @@ ion-navbar.no-border {
                     }
                     ion-label {
                         font-size: 1em;
-                        color: #1a1aff;
+                        color: #6d0101;
                     }
                     input {
-                        color: #1a1aff;
+                        color: #6d0101;
                     }
                 }
             }
@@ -399,7 +399,7 @@ ion-navbar.no-border {
         }
     }
     .toolbar-background {
-        background-image: linear-gradient(135deg, #222, #1a1aff);
+        background-image: linear-gradient(135deg, #222, #6d0101);
     }
     .other-data {
         .column {

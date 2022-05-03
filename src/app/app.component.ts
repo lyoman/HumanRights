@@ -30,11 +30,11 @@ export class AppComponent implements OnInit {
     //   url: '/financial-summary',
     //   icon: 'book'
     // },
-    // {
-    //   title: 'Help',
-    //   url: '/tebs/teb3',
-    //   icon: 'play'
-    // },
+    {
+      title: 'About Us',
+      url: '/aboutus',
+      icon: 'play'
+    },
     {
       title: 'Contact',
       url: '/contactus',
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Profile',
-      url: '/aboutus',
+      url: '/profile',
       icon: 'information-circle'
     }
   ];
