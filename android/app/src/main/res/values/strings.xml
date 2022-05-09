@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Human Rights Monitoring</string>
-    <string name="title_activity_main">Human Rights Monitoring Application</string>
-    <string name="package_name">com.humanrightsmonitoring.www</string>
-    <string name="custom_url_scheme">com.humanrightsmonitoring.www</string>
+    <string name="app_name">CNRG Application</string>
+    <string name="title_activity_main">Centre For Natural Resource Governance Application</string>
+    <string name="package_name">org.cnrgzim.www</string>
+    <string name="custom_url_scheme">com.cnrgzim.www</string>
 </resources>
