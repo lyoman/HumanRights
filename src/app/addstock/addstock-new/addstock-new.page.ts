@@ -105,7 +105,7 @@ export class AddstockNewPage implements OnInit {
     }
 
     async ngOnInit() {
-        this.loadFiles();
+        // this.loadFiles();
     }
 
     async loadFiles() {
