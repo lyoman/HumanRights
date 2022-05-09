@@ -111,10 +111,10 @@ export class AddstockNewPage implements OnInit {
     async loadFiles() {
         this.images = [];
 
-        const loading = await this.loadingCtrl.create({
-            message: 'Loading data...',
-        });
-        await loading.present();
+        // const loading = await this.loadingCtrl.create({
+        //     message: 'Loading data...',
+        // });
+        // await loading.present();
 
         Filesystem.readdir({
             directory: Directory.Data,
@@ -127,7 +127,7 @@ export class AddstockNewPage implements OnInit {
                 path: IMAGE_DIR
             });
         }).then(_ => {
-            loading.dismiss();
+            // loading.dismiss();
         })
     }
 
