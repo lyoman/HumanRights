@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button autoHide="false"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="title" style="margin-right: 50px;" class="ion-text-center">
+         Suggestion Box
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding animated fadeIn login auth-page">
+  <div class="login-content">
+    <form class="list-form">
+      <!-- <h1>Leave your suggestions</h1> -->
+
+      <ion-list>
+        <ion-list-header>
+          <h2>Leave your suggestions</h2>
+        </ion-list-header>
+        <ion-item>
+          <ion-label position="floating" style="color: #6d0101;">
+            <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+            Your Full Name
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="suggestion.fullname" name="fullname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" style="color: #6d0101;">
+            <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+            Email
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="suggestion.email" name="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" style="color: #6d0101;">
+            <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+            Phone Number
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="suggestion.phonenumber" name="phonenumber"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" style="color: #6d0101;">
+            <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
+            Description
+          </ion-label>
+          <!-- <ion-input type="text" [(ngModel)]="suggestion.description" name="description"></ion-input> -->
+          <textarea rows="5" cols="35" [(ngModel)]="suggestion.description" name="description"
+            class="form-control"></textarea>
+        </ion-item>
+      </ion-list>
+
+      <ion-button (click)="register()">
+        <ion-icon slot="icon-only" name="log-in"></ion-icon>
+        Submit Suggestion
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

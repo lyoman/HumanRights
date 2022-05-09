@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 // import { Platform } from '@ionic/angular';
 import { Http, HttpResponse } from '@capacitor-community/http';
 import { ApiService } from '../services/api.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -45,6 +46,7 @@ export class Teb1Page implements OnInit {
     public router: Router, 
     private apiService: ApiService,
     private alertController: AlertController,
+    private location: Location
     ) {
     this.plt = this.platform.is('mobileweb') ? 'web' :
       this.platform.is('ios') ? 'ios' : 'android'
@@ -53,14 +55,19 @@ export class Teb1Page implements OnInit {
       console.log("is_staff", this.is_staff);
   }
 
-  ngOnInit() {
-    // this.getDate();
-    this.getUsers(localStorage.getItem('user_id'));
+  logout() {
+    localStorage.clear();
   }
 
-  getUsers(id) {
+  ngOnInit() {
+    // this.getDate();
+   this.getUsers(localStorage.getItem('user_id'));
+    // location.reload();
+  }
+
+  async getUsers(id) {
     // this.loading = true;
-    this.apiService.getUsers1("users/user_detail/"+id).subscribe (data => {
+     this.apiService.getUsers1("users/user_detail/"+id).subscribe (data => {
       // console.log("data", data);
       this.users = data;
       localStorage.setItem('is_superuser', JSON.stringify(data['is_superuser']));
@@ -69,6 +76,7 @@ export class Teb1Page implements OnInit {
 
       // this.loading = false;
       // console.log(this.users);
+      // location.reload();
     }, (err) => {
       console.log(err);
       // this.loading = false;
@@ -158,23 +166,6 @@ export class Teb1Page implements OnInit {
         console.log(e)
         this.changeStatus('delete', 'unrestricted', 2);
       })
-  }
-
-
-  tutoring () {
-    this.router.navigateByUrl('/tebs/teb4')
-  }
-
-  remediation () {
-    this.router.navigateByUrl('/tebs/teb3')
-  }
-
-  training () {
-    this.router.navigateByUrl('/tebs/teb2')
-  }
-
-  financial() {
-    this.router.navigateByUrl('/financial-summary');
   }
 
   presentAlert(err) {

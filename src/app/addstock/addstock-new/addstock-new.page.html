@@ -321,10 +321,34 @@
                 <ion-button type="file" (click)="selectImage()" name="invoice">Open Camera</ion-button>
             </ion-item>
 
-            <ion-button (click)="register()" slot="end" fill="clear" class="shary" shape="round" icon-start
-                expand="block" color="warning" tappable>
+            <h3 *ngIf="images.length == 0" class="ion-padding ion-text-center">Please Select Image!</h3>
+
+            <ion-list>
+                <ion-item *ngFor="let file of images">
+                    <ion-thumbnail slot="start">
+                        <ion-img [src]="file.data"></ion-img>
+                    </ion-thumbnail>
+                    <ion-label style="color: #6d0101;">
+                        {{ file.name }}
+                    </ion-label>
+                    <ion-button slot="end" (click)="startUpload(file)">
+                        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+                    </ion-button>
+                    <ion-button slot="end" (click)="deleteImage(file)">
+                        <ion-icon slot="icon-only" name="trash"></ion-icon>
+                    </ion-button>
+                </ion-item>
+            </ion-list>
+
+            <!-- <ion-button (click)="register()" slot="end" fill="clear" class="shary" shape="round" icon-start
+                expand="block" color="primary" tappable>
                 <ion-icon slot="icon-only" name="log-in"></ion-icon>
                 <p style="color: #6d0101; ">Save Report</p>
+            </ion-button> -->
+
+            <ion-button (click)="register()">      
+                <ion-icon slot="icon-only" name="log-in"></ion-icon> 
+                Save Report
             </ion-button>
 
         </form>
@@ -336,33 +360,13 @@
             Loading....
         </div>
     </div> -->
-
-
-    <!-- <h3 *ngIf="images.length == 0" class="ion-padding ion-text-center">Please Select Image!</h3>
-
-    <ion-list>
-        <ion-item *ngFor="let file of images; let i = index">
-            <ion-thumbnail slot="start">
-                <ion-img [src]="file.data"></ion-img>
-            </ion-thumbnail>
-            <ion-label style="color: #6d0101;" class="ion-text-wrap">
-                {{ file.name }}
-            </ion-label>
-            <ion-button slot="end" fill="clear" class="shary" shape="round" icon-start expand="block" color="warning" (click)="startUpload(file)">
-                <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
-            </ion-button>
-            <ion-button slot="end" fill="clear" class="shary" shape="round" icon-start expand="block" color="warning" (click)="deleteImage(file)">
-                <ion-icon slot="icon-only" name="trash"></ion-icon>
-            </ion-button>
-        </ion-item>
-    </ion-list>
 </ion-content>
 
 <ion-footer>
     <ion-toolbar color="primary">
-        <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
-            <ion-icon slot="start" name="camera"></ion-icon>
-            Select Image
-        </ion-button>
+      <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Select Image
+      </ion-button>
     </ion-toolbar>
-</ion-footer> -->
+  </ion-footer>

@@ -1,10 +1,10 @@
+import { finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { AlertController, NavController, Platform, LoadingController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
-import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { finalize } from 'rxjs/operators';
+import { Filesystem, Directory } from '@capacitor/filesystem';
 
 
 const IMAGE_DIR = 'stored-images';
@@ -36,45 +36,6 @@ export class AddstockNewPage implements OnInit {
         date: new Date()
     };
 
-    VIOLATION_TYPE = [
-        {
-            name: "Forced Displacement",
-        },
-        {
-            name: "Exposure to pollutants"
-        },
-        {
-            name: "Loss of land or economic assets"
-        },
-        {
-            name: "Desecration of cultural heritage including graves"
-        },
-        {
-            name: "Torture and intimidation / harrassment"
-        },
-        {
-            name: "Curtailed freedom of movement"
-        },
-        {
-            name: "Exposure to degraded environment"
-        },
-        {
-            name: "Limited access to water"
-        },
-        {
-            name: "Forced and unpaid labour"
-        },
-        {
-            name: "Child labour"
-        },
-        {
-            name: "Murder / killings"
-        },
-        {
-            name: "Denied access to social services like Health facilities, School, Markets place"
-        },
-    ]
-
     new_case = {
         user: JSON.parse(localStorage.getItem('user_id')),
         company: "",
@@ -104,13 +65,13 @@ export class AddstockNewPage implements OnInit {
 
     involves_company = 'false';
 
-    ivCompany(states){
+    ivCompany(states) {
         // console.log("status leo man");
         console.log("status", states);
-        if(states == "Mining company security guards") {
+        if (states == "Mining company security guards") {
             this.involves_company = "true";
         } else {
-            this.involves_company = "false"; 
+            this.involves_company = "false";
         }
     }
 
@@ -131,6 +92,7 @@ export class AddstockNewPage implements OnInit {
         private navCtrl: NavController,
         private router: Router,
         private plt: Platform,
+        private platform: Platform,
         private loadingCtrl: LoadingController,
         private toastCtrl: ToastController
     ) { }
@@ -149,55 +111,41 @@ export class AddstockNewPage implements OnInit {
     async loadFiles() {
         this.images = [];
 
-        // const loading = await this.loadingCtrl.create({
-        //   message: 'Loading data...',
-        // });
-        // await loading.present();
+        const loading = await this.loadingCtrl.create({
+            message: 'Loading data...',
+        });
+        await loading.present();
 
         Filesystem.readdir({
-            path: IMAGE_DIR,
             directory: Directory.Data,
+            path: IMAGE_DIR
         }).then(result => {
             this.loadFileData(result.files);
-        },
-            async (err) => {
-                // Folder does not yet exists!
-                await Filesystem.mkdir({
-                    path: IMAGE_DIR,
-                    directory: Directory.Data,
-                });
-            }
-        ).then(_ => {
-            //   loading.dismiss();
-        });
+        }, async err => {
+            await Filesystem.mkdir({
+                directory: Directory.Data,
+                path: IMAGE_DIR
+            });
+        }).then(_ => {
+            loading.dismiss();
+        })
     }
 
-    // Get the actual base64 data of an image
-    // base on the name of the file
     async loadFileData(fileNames: string[]) {
         for (let f of fileNames) {
             const filePath = `${IMAGE_DIR}/${f}`;
 
             const readFile = await Filesystem.readFile({
-                path: filePath,
                 directory: Directory.Data,
+                path: filePath
             });
 
             this.images.push({
                 name: f,
                 path: filePath,
-                data: `data:image/jpeg;base64,${readFile.data}`,
+                data: `data:image/jpeg;base64,${readFile.data}`
             });
         }
-    }
-
-    // Little helper
-    async presentToast(text) {
-        const toast = await this.toastCtrl.create({
-            message: text,
-            duration: 3000,
-        });
-        toast.present();
     }
 
     async selectImage() {
@@ -205,33 +153,31 @@ export class AddstockNewPage implements OnInit {
             quality: 90,
             allowEditing: false,
             resultType: CameraResultType.Uri,
-            source: CameraSource.Photos // Camera, Photos or Prompt!
+            source: CameraSource.Camera
         });
+        console.log(image);
 
         if (image) {
-            this.saveImage(image)
+            this.saveImage(image);
         }
     }
 
-    // Create a new file from a capture image
     async saveImage(photo: Photo) {
         const base64Data = await this.readAsBase64(photo);
+        console.log(base64Data);
 
         const fileName = new Date().getTime() + '.jpeg';
         const savedFile = await Filesystem.writeFile({
+            directory: Directory.Data,
             path: `${IMAGE_DIR}/${fileName}`,
-            data: base64Data,
-            directory: Directory.Data
+            data: base64Data
         });
 
-        // Reload the file list
-        // Improve by only loading for the new image and unshifting array!
         this.loadFiles();
     }
 
-    // https://ionicframework.com/docs/angular/your-first-app/3-saving-photos
-    private async readAsBase64(photo: Photo) {
-        if (this.plt.is('hybrid')) {
+    async readAsBase64(photo: Photo) {
+        if (this.platform.is('hybrid')) {
             const file = await Filesystem.readFile({
                 path: photo.path
             });
@@ -239,10 +185,8 @@ export class AddstockNewPage implements OnInit {
             return file.data;
         }
         else {
-            // Fetch the photo, read as a blob, then convert to base64 format
             const response = await fetch(photo.webPath);
             const blob = await response.blob();
-
             return await this.convertBlobToBase64(blob) as string;
         }
     }
@@ -257,18 +201,23 @@ export class AddstockNewPage implements OnInit {
         reader.readAsDataURL(blob);
     });
 
-
-    // Convert the base64 to blob data
-    // and create  formData with it
     async startUpload(file: LocalFile) {
         const response = await fetch(file.data);
+        console.log("response", response);
+        console.log("file", file);
+        
         const blob = await response.blob();
+        console.log("blob", blob);
         const formData = new FormData();
-        formData.append('invoice', blob, file.name);
+        formData.append('community_description', this.new_case.community_description);
+        formData.append('type_of_violation', this.new_case.type_of_violation);
+        formData.append('how_it_happened', this.new_case.how_it_happened);
+        formData.append('names_of_vitims', this.new_case.names_of_vitims);
+        formData.append('evidence_files', blob, file.name);
+        formData.append('identity_verification', blob, file.name);
         this.uploadData(formData);
     }
 
-    // Upload the formData to our API
     async uploadData(formData: FormData) {
         const loading = await this.loadingCtrl.create({
             message: 'Uploading image...',
@@ -276,21 +225,15 @@ export class AddstockNewPage implements OnInit {
         await loading.present();
 
         // Use your own API!
-        const url = 'new_stock/new_stock/new/';
+        const url = 'reportcase/report_case/new/';
 
-        this.authService.register(url, formData)
-            .pipe(
-                finalize(() => {
-                    loading.dismiss();
-                })
-            )
-            .subscribe(res => {
-                if (res['success']) {
-                    this.presentToast('File upload complete.')
-                } else {
-                    this.presentToast('File upload failed.')
-                }
-            });
+        this.authService.register(url, formData).pipe(
+            finalize(() => {
+                loading.dismiss();
+            })
+        ).subscribe(res => {
+            console.log(res);
+        })
     }
 
     async deleteImage(file: LocalFile) {
@@ -299,16 +242,15 @@ export class AddstockNewPage implements OnInit {
             path: file.path
         });
         this.loadFiles();
-        this.presentToast('File removed.');
     }
 
 
     async register() {
         if (
-            this.new_case.type_of_violation == "" || 
-            this.new_case.names_of_vitims == "" || 
+            this.new_case.type_of_violation == "" ||
+            this.new_case.names_of_vitims == "" ||
             this.new_case.what_happened == ""
-            ) {
+        ) {
             this.presentAlert1();
         }
         else {
