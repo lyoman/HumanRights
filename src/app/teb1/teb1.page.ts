@@ -61,7 +61,7 @@ export class Teb1Page implements OnInit {
 
   ngOnInit() {
     // this.getDate();
-   this.getUsers(localStorage.getItem('user_id'));
+  //  this.getUsers(localStorage.getItem('user_id'));
     // location.reload();
   }
 

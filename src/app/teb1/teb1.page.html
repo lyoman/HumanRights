@@ -68,7 +68,8 @@
             <ion-col size="6" no-padding [routerLink]="['/addstock/addstock-new']">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/edit.png">
+                    <!-- <img src="assets/imgs/edit.png"> -->
+                    <ion-icon size="large" name="add-circle-outline"></ion-icon>
                     <h3>Add Report</h3>
                 </ion-card>
             </ion-col>
@@ -76,7 +77,8 @@
             <ion-col size="6" no-padding [routerLink]="['/addstock']">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/dashboard/budget.png">
+                    <!-- <img src="assets/imgs/dashboard/budget.png"> -->
+                    <ion-icon size="large" name="albums-outline"></ion-icon>
 
                     <h3>View Added Cases</h3>
                 </ion-card>
@@ -87,7 +89,8 @@
             <ion-col size="6" no-padding [routerLink]="['/sellstock']" *ngIf="is_superuser == 'true'">
                 <ion-card>
                     <br>
-                    <img src="./../../assets/imgs/dashboard/acquisition.png">
+                    <!-- <img src="./../../assets/imgs/dashboard/acquisition.png"> -->
+                    <ion-icon size="large" name="archive-outline"></ion-icon>
                     <h3>View Unread Reports</h3>
                 </ion-card>
             </ion-col>
@@ -95,8 +98,8 @@
             <ion-col size="6" no-padding [routerLink]="['/sellstock']" *ngIf="is_superuser == 'true'">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/report.png">
-
+                    <!-- <img src="assets/imgs/report.png"> -->
+                    <ion-icon size="large" name="folder-outline"></ion-icon>
                     <h3>View All Reports</h3>
                 </ion-card>
             </ion-col>
@@ -106,7 +109,9 @@
             <ion-col size="6" no-padding [routerLink]="['/financial-summary']" *ngIf="is_superuser == 'true'">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/dashboard/financial-presentation.png">
+                    <!-- <img src="assets/imgs/dashboard/financial-presentation.png"> -->
+                    <ion-icon size="large" name="analytics-outline"></ion-icon>
+                    <!-- analytics-outline -->
                     <h3>Statistics</h3>
                 </ion-card>
             </ion-col>
@@ -114,7 +119,7 @@
             <ion-col size="6" no-padding [routerLink]="['/contactus']" *ngIf="is_superuser == 'false'">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/phone.png">
+                    <ion-icon size="large" name="call-outline"></ion-icon>
 
                     <h3>Contact Us</h3>
                 </ion-card>
@@ -123,7 +128,8 @@
             <ion-col size="6" no-padding [routerLink]="['/profile']">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/dashboard/patient.png">
+                    <!-- <img src="assets/imgs/dashboard/patient.png"> -->
+                    <ion-icon size="large" name="person-outline"></ion-icon>
 
                     <h3>Current Profile</h3>
                 </ion-card>
@@ -134,7 +140,8 @@
             <ion-col size="6" no-padding [routerLink]="['/aboutus']">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/dashboard/budget.png">
+                    <!-- <img src="assets/imgs/dashboard/budget.png"> -->
+                    <ion-icon size="large" name="information-circle-outline"></ion-icon>
                     <h3>About Us</h3>
                 </ion-card>
             </ion-col>
@@ -142,7 +149,7 @@
             <ion-col size="6" no-padding [routerLink]="['/contactus']" *ngIf="is_superuser == 'true'">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/phone.png">
+                    <ion-icon size="large" name="call-outline"></ion-icon>
 
                     <h3>Contact Us</h3>
                 </ion-card>
@@ -151,7 +158,8 @@
             <ion-col size="6" no-padding [routerLink]="['/help']">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/dashboard/warehouse.png">
+                    <!-- <img src="assets/imgs/dashboard/warehouse.png"> -->
+                    <ion-icon size="large" name="help-circle-outline"></ion-icon>
 
                     <h3>Help</h3>
                 </ion-card>
@@ -160,7 +168,8 @@
             <ion-col size="6" (click)="logout()" no-padding [routerLink]="['/login']">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/dashboard/accounting1.png">
+                    <!-- <img src="assets/imgs/dashboard/accounting1.png"> -->
+                    <ion-icon size="large" name="log-out-outline"></ion-icon>
 
                     <h3>Logout</h3>
                 </ion-card>
@@ -169,7 +178,9 @@
             <ion-col size="6" no-padding [routerLink]="['/suggestion']" *ngIf="is_superuser == 'false'">
                 <ion-card>
                     <br>
-                    <img src="assets/imgs/dashboard/financial-presentation.png">
+                    <!-- <img src="assets/imgs/dashboard/financial-presentation.png"> -->
+                    <ion-icon size="large" name="chatbox-outline"></ion-icon>
+                    <!-- chatboxes-outline -->
 
                     <h3>Suggestion Box</h3>
                 </ion-card>

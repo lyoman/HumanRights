@@ -5,6 +5,7 @@ import { AlertController, NavController, Platform, LoadingController, ToastContr
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Geolocation } from '@capacitor/geolocation';
 
 
 const IMAGE_DIR = 'stored-images';
@@ -25,6 +26,7 @@ export class AddstockNewPage implements OnInit {
     images: LocalFile[] = [];
 
     fileToUpload: File = null;
+    cordinates: any;
 
     user = {
         name: '',
@@ -35,33 +37,6 @@ export class AddstockNewPage implements OnInit {
         user: JSON.parse(localStorage.getItem('user_id')),
         date: new Date()
     };
-
-    new_case = {
-        user: JSON.parse(localStorage.getItem('user_id')),
-        company: "",
-        date_reported: new Date(),
-        type_of_violation: "",
-        description_of_victims: "",
-        names_of_vitims: "",
-        victim_age: "",
-        victim_gender: "",
-        describe_gender: "",
-        victim_phone_number: "",
-        victim_address: "",
-        description_of_perpetrator: "",
-        motivations_behind_incident: "",
-        what_happened: "",
-        how_it_happened: "",
-        community_description: "",
-        reporter_phone: 0,
-        reporter_address: "",
-        reporter_email: "",
-        location: "",
-        latitude: 0,
-        longitude: 0,
-        // identity_verification: "",
-        // evidence_files: ""
-    }
 
     involves_company = 'false';
 
@@ -95,10 +70,49 @@ export class AddstockNewPage implements OnInit {
         private platform: Platform,
         private loadingCtrl: LoadingController,
         private toastCtrl: ToastController
-    ) { }
+    ) {
+        this.getCurrentPosition();
+     }
 
-    // ngOnInit() {
-    // }
+    async getCurrentPosition() {
+        const coordinates = await Geolocation.getCurrentPosition();
+        // console.log('Current', coordinates);
+        this.cordinates = coordinates;
+        // console.log("latitude", this.cordinates.coords.latitude);
+        // console.log("longitude", this.cordinates.coords.longitude);
+      }
+    
+      watchPosition() {
+        const wait = Geolocation.watchPosition({}, (position, err) => {});
+      }
+
+    new_case = {
+        user: JSON.parse(localStorage.getItem('user_id')),
+        company: "",
+        date_reported: new Date(),
+        type_of_violation: "",
+        description_of_victims: "",
+        names_of_vitims: "",
+        victim_age: "",
+        victim_gender: "",
+        describe_gender: "",
+        victim_phone_number: "",
+        victim_address: "",
+        description_of_perpetrator: "",
+        motivations_behind_incident: "",
+        what_happened: "",
+        how_it_happened: "",
+        community_description: "",
+        reporter_phone: 0,
+        reporter_address: "",
+        reporter_email: "",
+        location: "",
+        latitude: "",
+        longitude: "",
+        // identity_verification: "",
+        // evidence_files: ""
+    }
+
 
     involve_Com(res) {
         this.involves_company = res;
@@ -246,6 +260,8 @@ export class AddstockNewPage implements OnInit {
 
 
     async register() {
+        this.new_case.latitude = this.cordinates.coords.latitude;
+        this.new_case.longitude = this.cordinates.coords.longitude;
         if (
             this.new_case.type_of_violation == "" ||
             this.new_case.names_of_vitims == "" ||
@@ -261,6 +277,7 @@ export class AddstockNewPage implements OnInit {
             // formData.append('invoice', blob, file.name);
 
             // this.user.invoice = formData.append('invoice', blob, file.name);
+            console.log("new_case", this.new_case);
 
             this.loading = true;
             this.authService.register('reportcase/report_case/new/', this.new_case).subscribe((res) => {
