@@ -595,3 +595,11 @@ ion-icon[ng-reflect-disabled="true"] {
   #container a {
     text-decoration: none;
   }
+
+  textarea {
+    background-color: unset;
+}
+
+textarea {
+    background-color: unset !important;
+}
