@@ -16,12 +16,25 @@ interface LocalFile {
     data: string;
 }
 
+// private file: File;
+
+// // Multiple File Upload
+// private fileOne: File;
+// private fileTwo: File;
+// private fileThree: File;
+
 @Component({
     selector: 'app-addstock-new',
     templateUrl: './addstock-new.page.html',
     styleUrls: ['./addstock-new.page.scss'],
 })
 export class AddstockNewPage implements OnInit {
+    private file: File;
+
+    // Multiple File Upload
+    private fileOne: File;
+    private fileTwo: File;
+    private fileThree: File;
 
     images: LocalFile[] = [];
 
@@ -322,8 +335,61 @@ export class AddstockNewPage implements OnInit {
     }
 
 
-    onFileChange(event) {
-        this.fileToUpload = event.target.files[0];
-    }
+    // onFileChange(event) {
+    //     this.fileToUpload = event.target.files[0];
+    // }
+
+
+
+
+    // New Code
+    // Single File Upload
+  onFileChange(fileChangeEvent) {
+    this.file = fileChangeEvent.target.files[0];
+  }
+
+  async submitForm() {
+    let formData = new FormData();
+    formData.append('community_description', this.new_case.community_description);
+    formData.append('type_of_violation', this.new_case.type_of_violation);
+    formData.append('how_it_happened', this.new_case.how_it_happened);
+    formData.append('names_of_vitims', this.new_case.names_of_vitims);
+    formData.append("evidence_files", this.file, this.file.name);
+    formData.append("identity_verification", this.file, this.file.name);
+
+    const serverUrl = "reportcase/report_case/new/";
+    const nestServerUrl = "http://localhost:3000/photos/upload";
+
+    this.authService.register(serverUrl, formData).subscribe((response) => {
+      console.log(response);
+    });
+  }
+
+  // Multiple File Upload
+  onFileOneChange(fileChangeEvent) {
+    this.fileOne = fileChangeEvent.target.files[0];
+  }
+
+  onFileTwoChange(fileChangeEvent) {
+    this.fileTwo = fileChangeEvent.target.files[0];
+  }
+
+  onFileThreeChange(fileChangeEvent) {
+    this.fileThree = fileChangeEvent.target.files[0];
+  }
+
+  async submitMultipleForm() {
+    let formData = new FormData();
+    formData.append("photos[]", this.fileOne, this.fileOne.name);
+    formData.append("photos[]", this.fileTwo, this.fileTwo.name);
+    formData.append("photos[]", this.fileThree, this.fileOne.name);
+
+    const serverUrl = "reportcase/report_case/new/";
+    const nestServerUrl = "http://localhost:3000/photos/uploads";
+
+    this.authService.register(serverUrl, formData).subscribe((response) => {
+      console.log(response);
+    });
+  }
 
 }

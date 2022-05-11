@@ -314,6 +314,12 @@
 
 
             <ion-item>
+                <input type="file" (change)="onFileChange($event)" />
+            </ion-item>
+            <ion-button color="primary" expand="full" (click)="submitForm()"> Upload Single </ion-button>
+
+
+            <ion-item>
                 <ion-label position="floating" style="color: #6d0101;">
                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                     Verification and Authentication
@@ -346,8 +352,8 @@
                 <p style="color: #6d0101; ">Save Report</p>
             </ion-button> -->
 
-            <ion-button (click)="register()">      
-                <ion-icon slot="icon-only" name="log-in"></ion-icon> 
+            <ion-button (click)="register()">
+                <ion-icon slot="icon-only" name="log-in"></ion-icon>
                 Save Report
             </ion-button>
 
@@ -364,9 +370,9 @@
 
 <ion-footer>
     <ion-toolbar color="primary">
-      <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
-        <ion-icon slot="start" name="camera"></ion-icon>
-        Select Image
-      </ion-button>
+        <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
+            <ion-icon slot="start" name="camera"></ion-icon>
+            Select Image
+        </ion-button>
     </ion-toolbar>
-  </ion-footer>
+</ion-footer>

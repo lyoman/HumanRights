@@ -18,4 +18,4 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   }
    
 
-  defineCustomElements(window);
+  defineCustomElements(window); 
