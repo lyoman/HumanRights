@@ -91,8 +91,8 @@ export class AddstockNewPage implements OnInit {
         const coordinates = await Geolocation.getCurrentPosition();
         // console.log('Current', coordinates);
         this.cordinates = coordinates;
-        // console.log("latitude", this.cordinates.coords.latitude);
-        // console.log("longitude", this.cordinates.coords.longitude);
+        console.log("latitude", this.cordinates.coords.latitude);
+        console.log("longitude", this.cordinates.coords.longitude);
       }
     
       watchPosition() {
@@ -291,6 +291,7 @@ export class AddstockNewPage implements OnInit {
 
             // this.user.invoice = formData.append('invoice', blob, file.name);
             console.log("new_case", this.new_case);
+            this.new_case.date_reported = new Date(this.new_case.date_reported);
 
             this.loading = true;
             this.authService.register('reportcase/report_case/new/', this.new_case).subscribe((res) => {
@@ -302,10 +303,23 @@ export class AddstockNewPage implements OnInit {
             }, (err) => {
                 console.log(err);
                 this.loading = false;
-                this.presentAlert(err.message);
+                if(err.status == "400"){
+                    this.presentAlert12();
+                } else {
+                    this.presentAlert(err.message);
+                } 
             });
         }
     }
+
+    presentAlert12() {
+        const alert = this.alertController.create({
+          header: 'Error!',
+          message: 'Please fill in all the required fields',
+          subHeader: 'Fill in all fields',
+          buttons: ['Dismiss']
+        }).then(alert => alert.present());
+      }
 
     presentAlert(err) {
         const alert = this.alertController.create({

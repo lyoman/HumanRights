@@ -19,4 +19,8 @@ export class AuthService {
   register(url, userData): Observable<any> {
     return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}${url}`, userData, { headers: { 'Content-Type': 'application/json' } });
   }
+
+  registerFile(url, userData): Observable<any> {
+    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}${url}`, userData, { headers: { 'Content-Type': 'application/json' } });
+  }
 }
