@@ -12,19 +12,24 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Home',
-      url: '/tebs',
+      url: '/welcome',
       icon: 'home'
     },
     {
-      title: 'Add Report',
+      title: 'Dashboard',
+      url: '/tebs',
+      icon: 'globe'
+    },
+    {
+      title: 'Report Incident',
       url: '/addstock/addstock-new',
       icon: 'paper-plane'
     },
-    {
-      title: 'View My reports',
-      url: '/addstock',
-      icon: 'archive'
-    },
+    // {
+    //   title: 'View My reports',
+    //   url: '/addstock',
+    //   icon: 'archive'
+    // },
     // {
     //   title: 'Statistics',
     //   url: '/financial-summary',

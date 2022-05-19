@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./tebs/tebs.module').then(m => m.TebsPageModule) },
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule) },
   {
@@ -45,7 +45,8 @@ const routes: Routes = [
   {
     path: 'financial-summary',
     loadChildren: () => import('./financial-summary/financial-summary.module').then( m => m.FinancialSummaryPageModule)
-  },  {
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
@@ -53,6 +54,14 @@ const routes: Routes = [
     path: 'suggestion',
     loadChildren: () => import('./suggestion/suggestion.module').then( m => m.SuggestionPageModule)
   },
+  {
+    path: 'welcome',
+    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+  },  {
+    path: 'report-incident',
+    loadChildren: () => import('./report-incident/report-incident.module').then( m => m.ReportIncidentPageModule)
+  },
+
 
 
 

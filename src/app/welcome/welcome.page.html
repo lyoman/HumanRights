@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light" autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="margin-right:50px;" class="title" class="ion-text-center">
+      CNRG | Reporting Application
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding animated fadeIn login auth-page">
+  <div class="login-content">
+
+    <div padding-horizontal class="ion-text-center" class="animated fadeInDown" style="padding-top: 5%;">
+      <div class="ion-text-center">
+        <img class="img img-rounded" src="assets/imgs/CNRG-Final-logo.png"
+          style="height: auto;width: 250px;border-radius: 5%;">
+      </div>
+
+      <h1 style="text-align: center;color: #6d0101;">Centre for Natural Resource Governance</h1>
+    </div>
+    <hr>
+
+    <p>
+      CNRG is implementing a project that seeks to enhance reporting of human rights abuses in selected communities were
+      mining is taking place in Zimbabwe.
+    </p>
+
+    <p>
+      The project involves capacitating communities to collect data on human rights abuses and reporting the data in
+      real time.
+    </p>
+    <!-- <ion-fab slot="fixed">
+      <ion-fab-button fab-fixed>Report</ion-fab-button>
+    </ion-fab> -->
+    <p> The project aims to enhance the monitoring of rights, including environmental management in communities through
+      crowdsourcing of evidence of human rights abuses and environmental degradation in the communities.</p>
+    <p>
+      The goal of the project is to map and track trends of human rights abuses using data and ultimately lobbying
+      extractive companies and the state to uphold rights of communities that host natural resources, based on the
+      evidence gathered.
+    </p>
+    <!-- <ion-fab slot="fixed">
+      <ion-fab-button color="primary">Report</ion-fab-button>
+    </ion-fab> -->
+
+
+    <form class="list-form">
+
+      <!-- Fixed Floating Action Button that does not scroll with the content -->
+      <!-- <ion-fab slot="fixed">
+        <ion-fab-button color="primary">Report</ion-fab-button>
+      </ion-fab> -->
+
+      <!-- Default Floating Action Button that scrolls with the content.-->
+
+      <!-- <ion-fab-button [routerLink]="['/report-incident/report-incident-new']">Report</ion-fab-button> -->
+      <!-- Mini -->
+      <!-- <ion-fab-button size="small">Mini</ion-fab-button> -->
+
+      <!-- Colors -->
+      <!-- <ion-fab-button color="primary">Primary</ion-fab-button>
+      <ion-fab-button color="secondary">Secondary</ion-fab-button>
+      <ion-fab-button color="danger">Danger</ion-fab-button>
+      <ion-fab-button color="light">Light</ion-fab-button>
+      <ion-fab-button color="dark">Dark</ion-fab-button> -->
+
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <form class="list-form">
+    <ion-fab-button [routerLink]="['/report-incident/report-incident-new']">Report</ion-fab-button>
+    </form>
+  </ion-toolbar>
+</ion-footer>

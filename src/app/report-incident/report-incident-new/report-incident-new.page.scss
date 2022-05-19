@@ -1,0 +1,56 @@
+h1 {
+    color: #6d0101;
+    font-size: 20px;
+}
+
+ion-icon {
+    color: #6d0101;
+}
+
+ion-icon {
+    color: #6d0101;
+    zoom: 1.5;
+}
+
+h2 {
+    color: #2A1770;
+}
+
+h2 {
+    color: black !important;
+}
+
+#universal {
+    color: white;
+    background-color: #6d0101;
+    font-size: medium;
+    margin: auto;
+    text-align: justify;
+}
+
+// .myCustomSelect {
+//     max-width: 100% !important;
+// }
+
+// ion-label {
+
+//     white-space: normal !important;
+
+// }
+
+/* Action Sheet Interface: set color for the action sheet using its button CSS variables */
+.my-custom-interface .select-interface-option {
+    --button-color: #971e49;
+    --button-color-hover: #79193b;
+  }
+  
+  /* Alert Interface: set color for alert options (single selection) */
+  .my-custom-interface .select-interface-option .alert-radio-label {
+    color: #971e49;
+  }
+
+  .fbButtons ion-button {
+      width: 25%;
+      display: inline-block;
+      margin: 0 2%;
+  }
