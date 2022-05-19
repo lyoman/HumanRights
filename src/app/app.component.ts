@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Report Incident',
-      url: '/addstock/addstock-new',
+      url: '/report-incident/report-incident-new',
       icon: 'paper-plane'
     },
     // {
@@ -46,8 +46,8 @@ export class AppComponent implements OnInit {
       icon: 'call'
     },
     {
-      title: 'Profile',
-      url: '/profile',
+      title: 'Help',
+      url: '/help',
       icon: 'information-circle'
     }
   ];

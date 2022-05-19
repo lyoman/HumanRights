@@ -36,11 +36,11 @@ export class Teb3Page implements OnInit {
 
   ngOnInit() {
     console.log("localStorage.getItem('is_superuser')", localStorage.getItem('is_superuser'));
-    if(localStorage.getItem('is_superuser') == "true") {
-      this.get();
-    } else {
-      this.get1();
-    }
+    // if(localStorage.getItem('is_superuser') == "true") {
+    //   this.get();
+    // } else {
+    //   this.get1();
+    // }
     
   }
 

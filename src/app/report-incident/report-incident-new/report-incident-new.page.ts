@@ -68,6 +68,7 @@ export class ReportIncidentNewPage implements OnInit {
   backtoHome = "false";
   gotowhatTranspired = "false";
   backtowhatTranspired = "false";
+  contactInfoBtn = "false";
 
 
 
@@ -100,17 +101,25 @@ export class ReportIncidentNewPage implements OnInit {
   gotoWhatTrans() {
     this.whatTranspired = "true";
     this.locationName1 = "false";
-    this.gotoLocation1 = "true";
-    this.backtoHome = "false";
     this.backtoLocation1 = "true";
-    this.contactInfo = "true";
+    this.backtoHome = "false";
+    this.contactInfoBtn = "true";
+    this.gotoLocation1 = "true";
+    this.backtowhatTranspired = "false";
+   
   }
 
   backtowhatTrans(){
     this.contactInfo = "false";
+    this.whatTranspired = "true";
+    this.backtowhatTranspired = "false";
+    this.backtoLocation1 = "true";
+    this.backtoHome = "false";
   }
 
   backtoLocation1Fun(){
+    this.contactInfoBtn = "false";
+    this.contactInfo = "false";
     this.whatTranspired = "false";
     this.backtoLocation1 = "false";
     this.backtoHome = "true";
@@ -121,6 +130,10 @@ export class ReportIncidentNewPage implements OnInit {
 
   gotoContactInfo() {
     this.contactInfo = "true";
+    this.whatTranspired = "false";
+    this.backtoLocation1 = "false";
+    this.contactInfoBtn = "false";
+    this.backtowhatTranspired = "true";
   }
 
   ivCompany(states) {

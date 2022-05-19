@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-menu-button color="light" autoHide="false"></ion-menu-button>
@@ -29,14 +29,6 @@
                 </ion-card>
             </ion-col>
 
-            <!-- <ion-col size="4" no-padding [routerLink]="['/sellstock']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="archive-outline"></ion-icon>
-                    <h3>Unread Reports</h3>
-                </ion-card>
-            </ion-col> -->
-
             <ion-col size="4" no-padding [routerLink]="['/sellstock']">
                 <ion-card>
                     <br>
@@ -57,9 +49,7 @@
             <ion-col size="4" no-padding [routerLink]="['/financial-summary']">
                 <ion-card>
                     <br>
-                    <!-- <img src="assets/imgs/dashboard/financial-presentation.png"> -->
                     <ion-icon size="large" name="analytics-outline"></ion-icon>
-                    <!-- analytics-outline -->
                     <h3>Statistics</h3>
                 </ion-card>
             </ion-col>
@@ -76,7 +66,6 @@
             <ion-col size="4" no-padding [routerLink]="['/aboutus']">
                 <ion-card>
                     <br>
-                    <!-- <img src="assets/imgs/dashboard/budget.png"> -->
                     <ion-icon size="large" name="information-circle-outline"></ion-icon>
                     <h3>About Us</h3>
                 </ion-card>
@@ -87,7 +76,6 @@
             <ion-col size="4" no-padding [routerLink]="['/help']">
                 <ion-card>
                     <br>
-                    <!-- <img src="assets/imgs/dashboard/warehouse.png"> -->
                     <ion-icon size="large" name="help-circle-outline"></ion-icon>
 
                     <h3>Help</h3>
@@ -97,7 +85,6 @@
             <ion-col size="4" (click)="logout()" no-padding [routerLink]="['/login']">
                 <ion-card>
                     <br>
-                    <!-- <img src="assets/imgs/dashboard/accounting1.png"> -->
                     <ion-icon size="large" name="log-out-outline"></ion-icon>
 
                     <h3>Logout</h3>
@@ -184,4 +171,65 @@
         </ion-row>
     </ion-grid>
 
+</ion-content> -->
+
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button color="light" autoHide="false"></ion-menu-button>
+        </ion-buttons>
+        <ion-title style="margin-right:50px;" class="title" class="ion-text-center">
+            CNRG | Reporting Application
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding animated fadeIn login auth-page">
+    <div class="login-content">
+
+        <div padding-horizontal class="ion-text-center" class="animated fadeInDown" style="padding-top: 5%;">
+            <div class="ion-text-center">
+                <img class="img img-rounded" src="assets/imgs/CNRG-Final-logo.png"
+                    style="height: auto;width: 250px;border-radius: 5%;">
+            </div>
+
+            <h1 style="text-align: center;color: #6d0101;">Centre for Natural Resource Governance</h1>
+        </div>
+        <hr>
+
+        <p>
+            CNRG is implementing a project that seeks to enhance reporting of human rights abuses in selected
+            communities were
+            mining is taking place in Zimbabwe.
+        </p>
+
+        <p>
+            The project involves capacitating communities to collect data on human rights abuses and reporting the data
+            in
+            real time.
+        </p>
+
+        <p> The project aims to enhance the monitoring of rights, including environmental management in communities
+            through
+            crowdsourcing of evidence of human rights abuses and environmental degradation in the communities.</p>
+        <p>
+            The goal of the project is to map and track trends of human rights abuses using data and ultimately lobbying
+            extractive companies and the state to uphold rights of communities that host natural resources, based on the
+            evidence gathered.
+        </p>
+
+
+        <form class="list-form">
+
+
+        </form>
+    </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="light">
+        <form class="list-form">
+            <ion-fab-button [routerLink]="['/report-incident/report-incident-new']">Report</ion-fab-button>
+        </form>
+    </ion-toolbar>
+</ion-footer>
