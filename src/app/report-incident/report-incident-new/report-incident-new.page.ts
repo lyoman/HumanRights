@@ -58,6 +58,8 @@ export class ReportIncidentNewPage implements OnInit {
   locationName1 = "false";
   locationName2 = "false";
 
+  contactInfo = "false";
+
   whatTranspired = "false";
   onHome = "false";
 
@@ -83,16 +85,42 @@ export class ReportIncidentNewPage implements OnInit {
 
   backtoHomeFun(){
     this.backtoHome = "false";
-    this.gotoLocation1 = "true";
+    this.gotoLocation1 = "false";
+    this.locationName1 = "false";
+    this.onHome = "false";
   }
 
   gotoLocation1Fun() {
     this.gotoLocation1 = "true";
     this.backtoHome = "true";
+    this.locationName1 = "true";
+    this.onHome = "true";
+  }
+
+  gotoWhatTrans() {
+    this.whatTranspired = "true";
+    this.locationName1 = "false";
+    this.gotoLocation1 = "true";
+    this.backtoHome = "false";
+    this.backtoLocation1 = "true";
+    this.contactInfo = "true";
+  }
+
+  backtowhatTrans(){
+    this.contactInfo = "false";
   }
 
   backtoLocation1Fun(){
+    this.whatTranspired = "false";
+    this.backtoLocation1 = "false";
+    this.backtoHome = "true";
+    this.locationName1 = "true";
+    // this.gotoLocation1 = "false";
+  }
 
+
+  gotoContactInfo() {
+    this.contactInfo = "true";
   }
 
   ivCompany(states) {
