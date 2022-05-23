@@ -17,8 +17,6 @@ interface LocalFile {
 }
 
 
-
-
 @Component({
   selector: 'app-report-incident-new',
   templateUrl: './report-incident-new.page.html',
@@ -70,6 +68,15 @@ export class ReportIncidentNewPage implements OnInit {
   backtowhatTranspired = "false";
   contactInfoBtn = "false";
 
+  victimDiv = "false";
+  pepDiv = "false";
+  locationDiv = "false";
+
+  gotoVictimBtn = "false";
+  backtoVicBtn = "false";
+  gotoPepBtn = "false";
+  backtoPerp = "false";
+
 
 
   user = {
@@ -84,47 +91,100 @@ export class ReportIncidentNewPage implements OnInit {
 
   involves_company = 'false';
 
-  backtoHomeFun(){
+  backtoHomeFun() {
     this.backtoHome = "false";
     this.gotoLocation1 = "false";
     this.locationName1 = "false";
     this.onHome = "false";
+    this.gotoVictimBtn = "false";
+    this.locationDiv = "false";
   }
 
   gotoLocation1Fun() {
     this.gotoLocation1 = "true";
     this.backtoHome = "true";
-    this.locationName1 = "true";
+    this.locationName1 = "false";
+    this.gotoVictimBtn = "true";
     this.onHome = "true";
+    this.locationDiv = "true";
+    // this.gotoLocation1 = "false";
+  }
+
+  gotoVictimFun(){
+    this.locationName1 = "false";
+    this.locationDiv = "false";
+    this.victimDiv = "true";
+    // this.gotoLocation1 = "false";
+    this.gotoVictimBtn = "false";
+    this.gotoPepBtn = "true";
+    this.backtoHome = "false";
+    this.backtoLocation1 = "true";
+    this.gotoLocation1 = "true";
+    // this.backtoLocation1 = "false";
+  }
+
+  backtoVicFun (){
+    this.pepDiv = "false";
+    this.backtoVicBtn = "false";
+    this.backtoLocation1 = "true";
+    this.gotoVictimBtn = "false";
+    this.victimDiv = "true";
+    this.gotoPepBtn = "true";
+    this.locationName1 = "false";
+  }
+
+  backtoPerpFun() {
+    this.contactInfoBtn = "false";
+    this.locationName1 = "true";
+    this.whatTranspired = "false";
+    this.pepDiv = "true";
+    this.backtoVicBtn = "true";
+    this.backtoPerp = "false";
+  }
+
+  gotoPepFun(){
+    this.victimDiv = "false";
+    this.pepDiv = "true";
+    this.backtoVicBtn = "true";
+    this.backtoLocation1 = "false";
+    this.gotoPepBtn = "false";
+    this.locationName1 = "true";
   }
 
   gotoWhatTrans() {
     this.whatTranspired = "true";
     this.locationName1 = "false";
-    this.backtoLocation1 = "true";
+    this.backtoLocation1 = "false";
     this.backtoHome = "false";
     this.contactInfoBtn = "true";
     this.gotoLocation1 = "true";
     this.backtowhatTranspired = "false";
-   
+    this.backtoVicBtn = "false";
+    this.backtoPerp = "true";
+    this.pepDiv = "false";
+
   }
 
-  backtowhatTrans(){
+  backtowhatTrans() {
     this.contactInfo = "false";
     this.whatTranspired = "true";
     this.backtowhatTranspired = "false";
-    this.backtoLocation1 = "true";
+    this.backtoPerp = "true";
     this.backtoHome = "false";
+    this.contactInfoBtn = "true";
   }
 
-  backtoLocation1Fun(){
+  backtoLocation1Fun() {
     this.contactInfoBtn = "false";
     this.contactInfo = "false";
     this.whatTranspired = "false";
     this.backtoLocation1 = "false";
     this.backtoHome = "true";
-    this.locationName1 = "true";
-    // this.gotoLocation1 = "false";
+    this.gotoVictimBtn = "true";
+    this.victimDiv = "false";
+    this.locationDiv = "true";
+    this.gotoLocation1 = "true";
+    this.gotoPepBtn = "false";
   }
 
 
@@ -134,6 +194,7 @@ export class ReportIncidentNewPage implements OnInit {
     this.backtoLocation1 = "false";
     this.contactInfoBtn = "false";
     this.backtowhatTranspired = "true";
+    this.backtoPerp = "false";
   }
 
   ivCompany(states) {
@@ -170,20 +231,6 @@ export class ReportIncidentNewPage implements OnInit {
     this.getCurrentPosition();
   }
 
-  async getCurrentPosition() {
-    const coordinates = await Geolocation.getCurrentPosition();
-    // console.log('Current', coordinates);
-    this.cordinates = coordinates;
-    console.log("latitude", this.cordinates.coords.latitude);
-    console.log("longitude", this.cordinates.coords.longitude);
-  }
-
-  watchPosition() {
-    const wait = Geolocation.watchPosition({}, (position, err) => { });
-  }
-
-
-
   new_case = {
     user: JSON.parse(localStorage.getItem('user_id')),
     company: "",
@@ -207,9 +254,51 @@ export class ReportIncidentNewPage implements OnInit {
     location: "",
     latitude: "",
     longitude: "",
+    experiment: {},
+    // perpetrator: {}
     // identity_verification: "",
     // evidence_files: ""
   }
+
+  async getCurrentPosition() {
+    const coordinates = await Geolocation.getCurrentPosition();
+    // console.log('Current', coordinates);
+    this.cordinates = coordinates;
+    console.log("latitude", this.cordinates.coords.latitude);
+    console.log("longitude", this.cordinates.coords.longitude);
+    this.new_case.latitude = this.cordinates.coords.latitude;
+    this.new_case.longitude = this.cordinates.coords.longitude;
+  }
+
+  watchPosition() {
+    const wait = Geolocation.watchPosition({}, (position, err) => { });
+  }
+
+
+  victim_ = {
+    victim_name: '',
+    victim_description: '',
+    victim_contact: '',
+    victim_age: '',
+    victim_gender: ''
+  }
+
+  company_ = {
+    company_name: '',
+    location: '',
+    description: ''
+  }
+
+  perpetrator = {
+    description_of_perpetrator: "",
+    perpetrator_age: "",
+    perpetrator_gender: "",
+    perpetrator_name: ""
+  }
+
+  victimsArray = [];
+  perpetratorArray = [];
+  companyArray = [];
 
   violationType(event) {
     console.log("event", event);
@@ -285,16 +374,57 @@ export class ReportIncidentNewPage implements OnInit {
     }
   }
 
-  otherOption(event){
-    if(event == "other") {
+  handleCompanyChange() {
+    let element = {
+      company_name: this.company_.company_name,
+      location: this.company_.location,
+      description: this.company_.description,
+    };
+    this.companyArray.push(element);
+    console.log("companyArray", this.companyArray);
+  }
+
+  handleVictimsChange() {
+    let element = {
+      victim_name: this.victim_.victim_name,
+      victim_contact: this.victim_.victim_contact,
+      victim_age: this.victim_.victim_age,
+      victim_gender: this.victim_.victim_gender,
+      victim_description: this.victim_.victim_description
+    };
+    this.victimsArray.push(element);
+    console.log("victimsArray", this.victimsArray);
+  }
+
+  removeVictims(index) {
+    this.victimsArray.splice(index, 1);
+  }
+
+  handlePerpetratorChange() {
+    let element = {
+      description_of_perpetrator: this.perpetrator.description_of_perpetrator,
+      perpetrator_age: this.perpetrator.perpetrator_age,
+      perpetrator_gender: this.perpetrator.perpetrator_gender,
+      perpetrator_name: this.perpetrator.perpetrator_name,
+    };
+    this.perpetratorArray.push(element);
+    console.log("perpetratorArray", this.perpetratorArray);
+  }
+
+  removePerpetrator(index) {
+    this.perpetratorArray.splice(index, 1);
+  }
+
+  otherOption(event) {
+    if (event == "other") {
       this.otherOption1 = "true";
     } else {
       this.otherOption1 = "false";
     }
   }
 
-  murderOption(event){
-    if(event == "other weapons") {
+  murderOption(event) {
+    if (event == "other weapons") {
       this.murderOption1 = "true";
     } else {
       this.murderOption1 = "false";
@@ -325,7 +455,7 @@ export class ReportIncidentNewPage implements OnInit {
     this.onHome = "false";
   }
 
-  activatewhatTranspired(){
+  activatewhatTranspired() {
     this.locationName1 = "false";
     this.whatTranspired = "true";
     this.locationName2 = "true";
@@ -478,17 +608,26 @@ export class ReportIncidentNewPage implements OnInit {
 
 
   async register() {
-    this.new_case.latitude = this.cordinates.coords.latitude;
-    this.new_case.longitude = this.cordinates.coords.longitude;
     if (
-      this.new_case.type_of_violation == "" ||
-      this.new_case.names_of_vitims == "" ||
-      this.new_case.what_happened == ""
+      this.new_case.type_of_violation == ""
     ) {
       this.presentAlert1();
     }
     else {
+      this.new_case.experiment = {
+        "victims": this.victimsArray,
+      }
+      this.new_case.experiment = {
+        "perpetrator": this.perpetratorArray,
+      }
+      this.new_case.experiment = {
+        "company": this.companyArray,
+      }
 
+      if (this.cordinates.coords.latitude != null && this.cordinates.coords.longitude){
+        this.new_case.latitude = this.cordinates.coords.latitude;
+        this.new_case.longitude = this.cordinates.coords.longitude;
+      }
       // const response = await fetch(file.data);
       // const blob = await response.blob();
       // const formData = new FormData();
@@ -503,7 +642,7 @@ export class ReportIncidentNewPage implements OnInit {
 
         console.log(res);
         this.loading = false;
-        this.router.navigateByUrl('addstock');
+        this.router.navigateByUrl('welcome');
         this.presentAlert5();
       }, (err) => {
         console.log(err);
@@ -546,9 +685,9 @@ export class ReportIncidentNewPage implements OnInit {
 
   presentAlert5() {
     const alert = this.alertController.create({
-      header: 'Success!',
-      message: 'You have successfully added your stock',
-      subHeader: 'stocks has been added',
+      header: 'Thank you!',
+      message: 'You have successfully reported an incident',
+      subHeader: 'incident has been reported',
       buttons: ['Dismiss']
     }).then(alert => alert.present());
   }
