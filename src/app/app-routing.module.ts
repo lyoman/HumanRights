@@ -39,14 +39,6 @@ const routes: Routes = [
     loadChildren: () => import('./addstock/addstock.module').then( m => m.AddstockPageModule)
   },
   {
-    path: 'sellstock',
-    loadChildren: () => import('./sellstock/sellstock.module').then( m => m.SellstockPageModule)
-  },
-  {
-    path: 'financial-summary',
-    loadChildren: () => import('./financial-summary/financial-summary.module').then( m => m.FinancialSummaryPageModule)
-  },
-  {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
@@ -57,7 +49,8 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
-  },  {
+  },
+  {
     path: 'report-incident',
     loadChildren: () => import('./report-incident/report-incident.module').then( m => m.ReportIncidentPageModule)
   },
