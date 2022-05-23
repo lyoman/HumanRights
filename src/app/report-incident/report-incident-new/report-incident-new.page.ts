@@ -5,7 +5,8 @@ import { AlertController, NavController, Platform, LoadingController, ToastContr
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Geolocation } from '@capacitor/geolocation';
+// import { Geolocation } from '@capacitor/geolocation';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
 const IMAGE_DIR = 'stored-images';
@@ -218,6 +219,9 @@ export class ReportIncidentNewPage implements OnInit {
 
   loading: any;
 
+  latitude: any;
+  longitude: any;
+
   constructor(
     private alertController: AlertController,
     private authService: AuthService,
@@ -226,9 +230,11 @@ export class ReportIncidentNewPage implements OnInit {
     private plt: Platform,
     private platform: Platform,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private geolocation: Geolocation
   ) {
-    this.getCurrentPosition();
+    // this.getCurrentPosition();
+    this.getLocation();
   }
 
   new_case = {
@@ -260,19 +266,30 @@ export class ReportIncidentNewPage implements OnInit {
     // evidence_files: ""
   }
 
-  async getCurrentPosition() {
-    const coordinates = await Geolocation.getCurrentPosition();
-    // console.log('Current', coordinates);
-    this.cordinates = coordinates;
-    console.log("latitude", this.cordinates.coords.latitude);
-    console.log("longitude", this.cordinates.coords.longitude);
-    this.new_case.latitude = this.cordinates.coords.latitude;
-    this.new_case.longitude = this.cordinates.coords.longitude;
+  // async getCurrentPosition() {
+  //   const coordinates = await Geolocation.getCurrentPosition();
+  //   // console.log('Current', coordinates);
+  //   this.cordinates = coordinates;
+  //   console.log("latitude", this.cordinates.coords.latitude);
+  //   console.log("longitude", this.cordinates.coords.longitude);
+  //   this.new_case.latitude = this.cordinates.coords.latitude;
+  //   this.new_case.longitude = this.cordinates.coords.longitude;
+  // }
+
+  async getLocation() {
+    console.log('[DEBUG] About to getCurrentPosition()');
+    const position = await this.geolocation.getCurrentPosition();
+    this.latitude = position.coords.latitude;
+    this.longitude = position.coords.longitude;
+    console.log("latitude", this.latitude);
+    console.log("longitude", this.longitude);
+    this.new_case.latitude = this.latitude;
+    this.new_case.longitude = this.longitude;
   }
 
-  watchPosition() {
-    const wait = Geolocation.watchPosition({}, (position, err) => { });
-  }
+  // watchPosition() {
+  //   const wait = Geolocation.watchPosition({}, (position, err) => { });
+  // }
 
 
   victim_ = {
@@ -624,9 +641,9 @@ export class ReportIncidentNewPage implements OnInit {
         "company": this.companyArray,
       }
 
-      if (this.cordinates.coords.latitude != null && this.cordinates.coords.longitude){
-        this.new_case.latitude = this.cordinates.coords.latitude;
-        this.new_case.longitude = this.cordinates.coords.longitude;
+      if (this.latitude != null && this.longitude){
+        this.new_case.latitude = this.latitude;
+        this.new_case.longitude = this.longitude;
       }
       // const response = await fetch(file.data);
       // const blob = await response.blob();

@@ -9,6 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+
 // import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
 
 @NgModule({
@@ -22,7 +25,8 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, /*PDFGenerator*/ }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy /*PDFGenerator*/ },
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })
