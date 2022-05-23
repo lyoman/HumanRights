@@ -233,15 +233,15 @@ export class ReportIncidentNewPage implements OnInit {
     private toastCtrl: ToastController,
     private geolocation: Geolocation
   ) {
-    // this.getCurrentPosition();
     this.getLocation();
   }
 
   new_case = {
-    user: JSON.parse(localStorage.getItem('user_id')),
     company: "",
     date_reported: new Date(),
     type_of_violation: "",
+    fd_how_many_removed: "",
+
     description_of_victims: "",
     names_of_vitims: "",
     victim_age: "",
@@ -251,30 +251,31 @@ export class ReportIncidentNewPage implements OnInit {
     victim_address: "",
     description_of_perpetrator: "",
     motivations_behind_incident: "",
-    what_happened: "",
     how_it_happened: "",
     community_description: "",
+
+    what_happened: "",
+
     reporter_phone: null,
     reporter_address: "",
     reporter_email: "",
+
+    name_of_area: "",
+    village: "",
+    chief: "",
+    ward_name: "",
+    district: "",
+    province: "",
     location: "",
     latitude: "",
     longitude: "",
+
     experiment: {},
     // perpetrator: {}
     // identity_verification: "",
     // evidence_files: ""
   }
 
-  // async getCurrentPosition() {
-  //   const coordinates = await Geolocation.getCurrentPosition();
-  //   // console.log('Current', coordinates);
-  //   this.cordinates = coordinates;
-  //   console.log("latitude", this.cordinates.coords.latitude);
-  //   console.log("longitude", this.cordinates.coords.longitude);
-  //   this.new_case.latitude = this.cordinates.coords.latitude;
-  //   this.new_case.longitude = this.cordinates.coords.longitude;
-  // }
 
   async getLocation() {
     console.log('[DEBUG] About to getCurrentPosition()');
@@ -287,10 +288,6 @@ export class ReportIncidentNewPage implements OnInit {
     this.new_case.longitude = this.longitude;
   }
 
-  // watchPosition() {
-  //   const wait = Geolocation.watchPosition({}, (position, err) => { });
-  // }
-
 
   victim_ = {
     victim_name: '',
@@ -302,8 +299,8 @@ export class ReportIncidentNewPage implements OnInit {
 
   company_ = {
     company_name: '',
-    location: '',
-    description: ''
+    company_location: '',
+    company_description: ''
   }
 
   perpetrator = {
@@ -394,8 +391,8 @@ export class ReportIncidentNewPage implements OnInit {
   handleCompanyChange() {
     let element = {
       company_name: this.company_.company_name,
-      location: this.company_.location,
-      description: this.company_.description,
+      location: this.company_.company_location,
+      description: this.company_.company_description,
     };
     this.companyArray.push(element);
     console.log("companyArray", this.companyArray);
