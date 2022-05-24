@@ -37,7 +37,7 @@ export class ReportIncidentNewPage implements OnInit {
   fileToUpload: File = null;
   cordinates: any;
 
-  Forced_Displacement = "Forced Displacement";
+  Forced_Displacement = "Forced displacement";
   forced = "false";
   exposure = "false";
   loss = "false";
@@ -237,22 +237,72 @@ export class ReportIncidentNewPage implements OnInit {
   }
 
   new_case = {
-    company: "",
     date_reported: new Date(),
     type_of_violation: "",
-    fd_how_many_removed: "",
 
-    description_of_victims: "",
-    names_of_vitims: "",
-    victim_age: "",
-    victim_gender: "",
-    describe_gender: "",
-    victim_phone_number: "",
-    victim_address: "",
-    description_of_perpetrator: "",
-    motivations_behind_incident: "",
-    how_it_happened: "",
-    community_description: "",
+    // Forced Displacement
+    fd_how_many_removed: "",
+    fd_alternative_place: "",
+    fd_alternative_place_description: "",
+
+    //Exposure to pollutants
+    ep_what_kind: "",
+    ep_source: "",
+    ep_source_description: "",
+    ep_num_people_exposed: "",
+    ep_who_is_responsible: "",
+
+    // Loss of land or economic assets
+    ll_assests_lost: "",
+    ll_who_is_responsible: "",
+    ll_families_affected: "",
+
+    // Desecration of cultural heritage including graves
+    dc_how_many_graves: "",
+    dc_who_desecrated_them: "",
+
+    // Torture, intimidation and harassment
+    ti_type: "",
+    ti_other: "",
+    ti_groups_affected: "",
+    ti_who_did_this: "",
+    ti_company_involved: "",
+    ti_the_reason: "",
+
+    // Reduced freedom of movement
+    rf_company_involved: "",
+
+    // Limited access to water
+    la_company_involved: "",
+
+    // Forced and unpaid labour
+    fu_company_involved: "",
+
+    // Child labour
+    cl_company_involved: "",
+    cl_number_of_children: "",
+
+    // Evidence of smuggling
+    es_which_resource: "",
+    es_who_is_smuggling: "",
+    es_company_involved: "",
+
+    // Sexual violence
+    sv_affected_people: "",
+    sv_type: "",
+    sv_company_involved: "",
+    sv_who_did_this: "",
+
+    // Murder or killings
+    mk_groups_of_persons: "",
+    mk_number_of_people: "",
+    mk_how_they_died: "",
+    mk_murder_other: "",
+    mk_company_involved: "",
+
+    // motivations_behind_incident: "",
+    // how_it_happened: "",
+    // community_description: "",
 
     what_happened: "",
 
@@ -260,6 +310,7 @@ export class ReportIncidentNewPage implements OnInit {
     reporter_address: "",
     reporter_email: "",
 
+    // location
     name_of_area: "",
     village: "",
     chief: "",
@@ -270,7 +321,8 @@ export class ReportIncidentNewPage implements OnInit {
     latitude: "",
     longitude: "",
 
-    experiment: {},
+    collection_vp: {},
+    media_files: {},
     // perpetrator: {}
     // identity_verification: "",
     // evidence_files: ""
@@ -316,7 +368,7 @@ export class ReportIncidentNewPage implements OnInit {
 
   violationType(event) {
     console.log("event", event);
-    if (event == "Forced Displacement") {
+    if (event == "Forced displacement") {
       this.forced = "true";
     } else {
       this.forced = "false";
@@ -585,10 +637,9 @@ export class ReportIncidentNewPage implements OnInit {
     const blob = await response.blob();
     console.log("blob", blob);
     const formData = new FormData();
-    formData.append('community_description', this.new_case.community_description);
+    // formData.append('community_description', this.new_case.community_description);
     formData.append('type_of_violation', this.new_case.type_of_violation);
-    formData.append('how_it_happened', this.new_case.how_it_happened);
-    formData.append('names_of_vitims', this.new_case.names_of_vitims);
+    // formData.append('how_it_happened', this.new_case.how_it_happened);
     formData.append('evidence_files', blob, file.name);
     formData.append('identity_verification', blob, file.name);
     this.uploadData(formData);
@@ -628,13 +679,13 @@ export class ReportIncidentNewPage implements OnInit {
       this.presentAlert1();
     }
     else {
-      this.new_case.experiment = {
+      this.new_case.collection_vp = {
         "victims": this.victimsArray,
       }
-      this.new_case.experiment = {
+      this.new_case.collection_vp = {
         "perpetrator": this.perpetratorArray,
       }
-      this.new_case.experiment = {
+      this.new_case.collection_vp = {
         "company": this.companyArray,
       }
 
@@ -722,10 +773,9 @@ export class ReportIncidentNewPage implements OnInit {
 
   async submitForm() {
     let formData = new FormData();
-    formData.append('community_description', this.new_case.community_description);
+    // formData.append('community_description', this.new_case.community_description);
     formData.append('type_of_violation', this.new_case.type_of_violation);
-    formData.append('how_it_happened', this.new_case.how_it_happened);
-    formData.append('names_of_vitims', this.new_case.names_of_vitims);
+    // formData.append('how_it_happened', this.new_case.how_it_happened);
     formData.append("evidence_files", this.file, this.file.name);
     formData.append("identity_verification", this.file, this.file.name);
 

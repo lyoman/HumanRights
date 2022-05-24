@@ -12,6 +12,42 @@
 <ion-content class="ion-padding animated fadeIn login auth-page">
   <div class="login-content">
 
+    <form [formGroup]="closureForm" (ngSubmit)="saveClosureRawMaterials(closureForm.value)">
+
+      <br />
+      <div class="row" *ngIf="!loading">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <ion-label for="exampleFormControlInput1">evidence_files</ion-label>
+            <ion-input type="file" (change)="onFileChange($event)" formControlName="evidence_files"
+              class="form-control"></ion-input>
+          </div>
+
+          <div class="form-group">
+            <ion-label for="exampleFormControlInput1">identity_verification</ion-label>
+            <ion-input type="file" (change)="onFileChange1($event)" formControlName="identity_verification"
+              class="form-control"></ion-input>
+          </div>
+        </div>
+
+        <div class="text text-center" style="width: 100%;">
+          <ion-button type="submit" [disabled]="closureForm.invalid" class="btn btn-outline-primary btn-block">Save
+          </ion-button>
+        </div>
+      </div>
+      <div *ngIf="loading" class="text ion-text-center myloader">
+        <img height="200" width="auto" src="assets/imgs/tenor.gif">
+        <div class="text">
+          Loading....
+        </div>
+      </div>
+    </form>
+
     <div padding-horizontal class="ion-text-center" class="animated fadeInDown" style="padding-top: 5%;">
       <div class="ion-text-center">
         <img class="img img-rounded" src="assets/imgs/CNRG-Final-logo.png"
@@ -73,7 +109,7 @@
 <ion-footer>
   <ion-toolbar color="light">
     <form class="list-form">
-    <ion-fab-button [routerLink]="['/report-incident/report-incident-new']">Report</ion-fab-button>
+      <ion-fab-button [routerLink]="['/report-incident/report-incident-new']">Report</ion-fab-button>
     </form>
   </ion-toolbar>
 </ion-footer>

@@ -85,7 +85,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             How many people have been forcibly removed?
                         </ion-label><br>
-                        <ion-input type="number" [(ngModel)]="new_case.location" name="location"></ion-input>
+                        <ion-input type="number" [(ngModel)]="new_case.fd_how_many_removed" name="fd_how_many_removed"></ion-input>
                     </ion-item>
 
 
@@ -95,13 +95,13 @@
                             Have they been offered alternative places to stay?
                         </ion-label><br>
                         <ion-select interface="action-sheet" cancelText="Cancel" okText="Okay!" placeholder="Yes / No"
-                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.type_of_violation"
-                            name="type_of_violation">
+                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.fd_alternative_place"
+                            name="fd_alternative_place">
                             <ion-select-option value="Yes">Yes</ion-select-option>
                             <ion-select-option value="No">No</ion-select-option>
                         </ion-select>
-                        <ion-input type="text" placeholder="optional description" [(ngModel)]="new_case.location"
-                            name="location">
+                        <ion-input type="text" placeholder="optional description" [(ngModel)]="new_case.fd_alternative_place_description"
+                            name="fd_alternative_place_description">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -115,7 +115,7 @@
                         </ion-label><br>
                         <ion-select cancelText="Cancel" okText="Okay!" placeholder="air pollution"
                             class="ion-text-wrap myCustomSelect form-control custom-options"
-                            [(ngModel)]="new_case.type_of_violation" name="type_of_violation">
+                            [(ngModel)]="new_case.ep_what_kind" name="ep_what_kind">
                             <ion-select-option value="land pollution">land pollution</ion-select-option>
                             <ion-select-option value="water pollution">water pollution</ion-select-option>
                             <ion-select-option value="air pollution">air pollution</ion-select-option>
@@ -130,13 +130,13 @@
                         </ion-label><br>
                         <ion-select interface="action-sheet" cancelText="Cancel" okText="Okay!"
                             placeholder="Source of pollution" class="myCustomSelect form-control custom-options"
-                            [(ngModel)]="new_case.type_of_violation" name="type_of_violation">
+                            [(ngModel)]="new_case.ep_source" name="ep_source">
                             <ion-select-option value="factory">factory</ion-select-option>
                             <ion-select-option value="mine effluent">mine effluent</ion-select-option>
                             <ion-select-option value="gases">gases</ion-select-option>
                         </ion-select>
-                        <ion-input type="text" placeholder="optional description" [(ngModel)]="new_case.location"
-                            name="location">
+                        <ion-input type="text" placeholder="optional description" [(ngModel)]="new_case.ep_source_description"
+                            name="ep_source_description">
                         </ion-input>
                     </ion-item>
 
@@ -145,8 +145,8 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             How many people have been exposed to this pollution?
                         </ion-label>
-                        <ion-input type="number" placeholder="number of people exposed" [(ngModel)]="new_case.location"
-                            name="location">
+                        <ion-input type="number" placeholder="number of people exposed" [(ngModel)]="new_case.ep_num_people_exposed"
+                            name="ep_num_people_exposed">
                         </ion-input>
                     </ion-item>
 
@@ -155,8 +155,8 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Who is responsible for the pollution (name of company)?
                         </ion-label>
-                        <ion-input type="text" placeholder="name of the company" [(ngModel)]="new_case.location"
-                            name="location">
+                        <ion-input type="text" placeholder="name of the company" [(ngModel)]="new_case.ep_who_is_responsible"
+                            name="ep_who_is_responsible">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -169,7 +169,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             What economic assets have you lost ? - livestock, agricultural land, other specify
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.ll_assests_lost" name="ll_assests_lost">
                         </ion-input>
                     </ion-item>
 
@@ -178,7 +178,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Who is responsible for the loss (company name)?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.ll_who_is_responsible" name="ll_who_is_responsible">
                         </ion-input>
                     </ion-item>
 
@@ -187,7 +187,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             How many families were affected?
                         </ion-label>
-                        <ion-input type="number" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="number" [(ngModel)]="new_case.ll_families_affected" name="ll_families_affected">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -200,7 +200,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             How many graves were desecrated?
                         </ion-label>
-                        <ion-input type="number" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="number" [(ngModel)]="new_case.dc_how_many_graves" name="dc_how_many_graves">
                         </ion-input>
                     </ion-item>
 
@@ -209,7 +209,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Who desecrated them?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.dc_who_desecrated_them" name="dc_who_desecrated_them">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -223,7 +223,7 @@
                         </ion-label>
                         <ion-select (ngModelChange)="otherOption($event)" cancelText="Cancel" okText="Okay!"
                             class="ion-text-wrap myCustomSelect form-control custom-options"
-                            [(ngModel)]="new_case.type_of_violation" name="type_of_violation">
+                            [(ngModel)]="new_case.ti_type" name="ti_type">
                             <ion-select-option value="dog bites">dog bites</ion-select-option>
                             <ion-select-option value="beatings">beatings</ion-select-option>
                             <ion-select-option value="physical injury">physical injury</ion-select-option>
@@ -231,8 +231,8 @@
                             <ion-select-option value="other">other</ion-select-option>
                         </ion-select>
                         <ion-input *ngIf="otherOption1 == 'true'" type="text"
-                            placeholder="other torture, intimidation and harassment" [(ngModel)]="new_case.location"
-                            name="location">
+                            placeholder="other torture, intimidation and harassment" [(ngModel)]="new_case.ti_other"
+                            name="ti_other">
                         </ion-input>
                     </ion-item>
 
@@ -243,8 +243,8 @@
                             Which groups of people were affected ?
                         </ion-label>
                         <ion-select cancelText="Cancel" okText="Okay!"
-                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.type_of_violation"
-                            name="type_of_violation">
+                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.ti_groups_affected"
+                            name="ti_groups_affected">
                             <ion-select-option value="women">Women</ion-select-option>
                             <ion-select-option value="girls">Girls</ion-select-option>
                             <ion-select-option value="artisanal miners">Artisanal miners</ion-select-option>
@@ -258,8 +258,8 @@
                             Who did this ?
                         </ion-label>
                         <ion-select cancelText="Cancel" okText="Okay!"
-                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.type_of_violation"
-                            name="type_of_violation">
+                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.ti_who_did_this"
+                            name="ti_who_did_this">
                             <ion-select-option value="soldiers">Soldiers</ion-select-option>
                             <ion-select-option value="police">Police</ion-select-option>
                             <ion-select-option value="security guards">Security guards</ion-select-option>
@@ -272,7 +272,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Which company was involved ?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.ti_company_involved" name="ti_company_involved">
                         </ion-input>
                     </ion-item>
 
@@ -282,7 +282,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             What did they say was the reason for this ?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.ti_the_reason" name="ti_the_reason">
                         </ion-input>
                     </ion-item>
 
@@ -295,7 +295,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Which company was involved?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.rf_company_involved" name="rf_company_involved">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -307,7 +307,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Which company was involved?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.la_company_involved" name="la_company_involved">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -319,7 +319,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Which company was involved?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.fu_company_involved" name="fu_company_involved">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -331,7 +331,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Which company was involved?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.cl_company_involved" name="cl_company_involved">
                         </ion-input>
                     </ion-item>
 
@@ -340,7 +340,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Number of children involved
                         </ion-label>
-                        <ion-input type="number" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="number" [(ngModel)]="new_case.cl_number_of_children" name="cl_number_of_children">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -352,7 +352,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Which resource is being smuggled
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.es_which_resource" name="es_which_resource">
                         </ion-input>
                     </ion-item>
 
@@ -361,7 +361,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Who is smuggling the resources
                         </ion-label>
-                        <ion-input type="number" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="number" [(ngModel)]="new_case.es_who_is_smuggling" name="es_who_is_smuggling">
                         </ion-input>
                     </ion-item>
 
@@ -370,7 +370,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Which company is involved
                         </ion-label>
-                        <ion-input type="number" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="number" [(ngModel)]="new_case.es_company_involved" name="es_company_involved">
                         </ion-input>
                     </ion-item>
                 </div>
@@ -384,7 +384,7 @@
                         </ion-label>
                         <ion-select cancelText="Cancel" okText="Okay!"
                             class="ion-text-wrap myCustomSelect form-control custom-options"
-                            [(ngModel)]="new_case.type_of_violation" name="type_of_violation">
+                            [(ngModel)]="new_case.sv_affected_people" name="sv_affected_people">
                             <ion-select-option value="girls">Girls</ion-select-option>
                             <ion-select-option value="women">Women</ion-select-option>
                             <ion-select-option value="men">Men</ion-select-option>
@@ -398,8 +398,8 @@
                             Type of sexual violence
                         </ion-label>
                         <ion-select cancelText="Cancel" okText="Okay!"
-                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.type_of_violation"
-                            name="type_of_violation">
+                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.sv_type"
+                            name="sv_type">
                             <ion-select-option value="rape">Rape</ion-select-option>
                             <ion-select-option value="sexual favours">Sexual favours</ion-select-option>
                             <ion-select-option value="indecent assault">Indecent assault</ion-select-option>
@@ -411,7 +411,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Which company was involved ?
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.sv_company_involved" name="sv_company_involved">
                         </ion-input>
                     </ion-item>
 
@@ -421,8 +421,8 @@
                             Who did this?
                         </ion-label>
                         <ion-select cancelText="Cancel" okText="Okay!"
-                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.type_of_violation"
-                            name="type_of_violation">
+                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.sv_who_did_this"
+                            name="sv_who_did_this">
                             <ion-select-option value="soldiers">Soldiers</ion-select-option>
                             <ion-select-option value="police">Police</ion-select-option>
                             <ion-select-option value="security guards">Security guards</ion-select-option>
@@ -441,7 +441,7 @@
                         </ion-label>
                         <ion-select cancelText="Cancel" okText="Okay!"
                             class="ion-text-wrap myCustomSelect form-control custom-options"
-                            [(ngModel)]="new_case.type_of_violation" name="type_of_violation">
+                            [(ngModel)]="new_case.mk_groups_of_persons" name="mk_groups_of_persons">
                             <ion-select-option value="artisanal miners">Artisanal miners</ion-select-option>
                             <ion-select-option value="company workers">Company workers</ion-select-option>
                             <ion-select-option value="women">Women</ion-select-option>
@@ -455,7 +455,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Number of people killed
                         </ion-label>
-                        <ion-input type="number" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="number" [(ngModel)]="new_case.mk_number_of_people" name="mk_number_of_people">
                         </ion-input>
                     </ion-item>
 
@@ -466,8 +466,8 @@
                             How the people were killed
                         </ion-label>
                         <ion-select (ngModelChange)="murderOption($event)" cancelText="Cancel" okText="Okay!"
-                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.type_of_violation"
-                            name="type_of_violation">
+                            class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.mk_how_they_died"
+                            name="mk_how_they_died">
                             <ion-select-option value="gunshots">Gunshots</ion-select-option>
                             <ion-select-option value="beatings">Beatings</ion-select-option>
                             <ion-select-option value="dogbites">Dogbites</ion-select-option>
@@ -477,7 +477,7 @@
                         </ion-select>
 
                         <ion-input *ngIf="murderOption1 == 'true'" placeholder="describe other wapons" type="text"
-                            [(ngModel)]="new_case.location" name="location">
+                            [(ngModel)]="new_case.mk_murder_other" name="mk_murder_other">
                         </ion-input>
                     </ion-item>
 
@@ -486,7 +486,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Company involved
                         </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.location" name="location">
+                        <ion-input type="text" [(ngModel)]="new_case.mk_company_involved" name="mk_company_involved">
                         </ion-input>
                     </ion-item>
 
@@ -592,7 +592,7 @@
 
                                 <ion-select interface="action-sheet" [(ngModel)]="victim_.victim_description"
                                     name="victim_description">
-                                    <ion-select-option value="gurdian">Community member (individual/group)
+                                    <ion-select-option value="Community member (individual/group)">Community member (individual/group)
                                     </ion-select-option>
                                     <ion-select-option value="Women">Women</ion-select-option>
                                     <ion-select-option value="Girls">Girls</ion-select-option>

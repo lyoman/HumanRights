@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {from, Observable} from 'rxjs';
 
@@ -33,6 +33,12 @@ export class ApiService {
   ios_put_unrestricted = 0;
   ios_delete_unrestricted = 0;
   // More variables for restricted API calls
+
+  httpPutOptions1 = {
+    headers: new HttpHeaders({
+        Accept: '*/*'
+    })
+};
 
   constructor(
     private httpClient: HttpClient,
@@ -107,6 +113,10 @@ export class ApiService {
       );
     }
   }
+
+  public portPostData3(url: string, formData: any): Observable<any> {
+    return this.httpClient.post(this.AUTH_SERVER_ADDRESS + url, formData, this.httpPutOptions1);
+}
 
 
 }
