@@ -26,6 +26,7 @@ export class ReportIncidentNewPage implements OnInit {
   cordinates: any;
 
   Forced_Displacement = "Forced displacement";
+  denied = "false";
   forced = "false";
   exposure = "false";
   loss = "false";
@@ -332,30 +333,33 @@ export class ReportIncidentNewPage implements OnInit {
       uploadData.append('type', 'image');
       uploadData.append('name', this.fileToUpload.name);
       uploadData.append('file', this.fileToUpload, this.fileToUpload.name);
+      this.fileToUpload = null;
     }
     if (this.fileToUpload == null) {
       // this.toastr.error('Error', 'Please attach a file.');
-      this.loading = false;
+      // this.loading = false;
     }
 
     if (this.fileToUpload1) {
       uploadData.append('type', 'audio');
       uploadData.append('name', this.fileToUpload1.name);
       uploadData.append('file', this.fileToUpload1, this.fileToUpload1.name);
+      this.fileToUpload1 = null;
     }
     if (this.fileToUpload1 == null) {
       // this.toastr.error('Error', 'Please attach a file.');
-      this.loading = false;
+      // this.loading = false;
     }
 
     if (this.fileToUpload2) {
       uploadData.append('type', 'video');
       uploadData.append('name', this.fileToUpload2.name);
       uploadData.append('file', this.fileToUpload2, this.fileToUpload2.name);
+      this.fileToUpload2 = null;
     }
     if (this.fileToUpload2 == null) {
       // this.toastr.error('Error', 'Please attach a file.');
-      this.loading = false;
+      // this.loading = false;
     }
 
     this.apiService.portPostData3('reportcase/add_files/', uploadData).subscribe(
@@ -384,6 +388,18 @@ export class ReportIncidentNewPage implements OnInit {
         // this.toastr.error('Error', 'Please fill up all the fields');
       }
     );
+  }
+
+  removeAudio(index){
+    this.audiosArray.splice(index, 1);
+  }
+
+  removeVideo(index){
+    this.videosArray.splice(index, 1);
+  }
+
+  removeImage(index){
+    this.imagesArray.splice(index, 1);
   }
 
   onFileChange(event) {
@@ -447,6 +463,13 @@ export class ReportIncidentNewPage implements OnInit {
     } else {
       this.forced = "false";
     }
+    // Denied access to social services like Health facilities, School, Markets place
+    if (event == "Denied access to social services like Health facilities, School, Markets place") {
+      this.denied = "true";
+    } else {
+      this.denied = "false";
+    }
+    //
     if (event == "Exposure to pollutants") {
       this.exposure = "true";
     } else {
@@ -610,25 +633,16 @@ export class ReportIncidentNewPage implements OnInit {
     else {
       this.new_case.collection_vp = {
         "victims": this.victimsArray,
-      }
-      this.new_case.collection_vp = {
         "perpetrator": this.perpetratorArray,
-      }
-      this.new_case.collection_vp = {
         "company": this.companyArray,
       }
 
       this.new_case.media_files = {
         "audios": this.audiosArray,
-      }
-
-      this.new_case.media_files = {
         "videos": this.videosArray,
-      }
-
-      this.new_case.media_files = {
         "images": this.imagesArray,
       }
+
 
       if (this.latitude != null && this.longitude){
         this.new_case.latitude = this.latitude;
@@ -683,11 +697,13 @@ export class ReportIncidentNewPage implements OnInit {
   presentAlert1() {
     const alert = this.alertController.create({
       header: 'Error!',
-      message: 'Please fill in all fields in order to submit report',
-      subHeader: 'Fill in all fields',
+      message: 'Please choose the type of violation in order to submit report',
+      subHeader: 'Fill in type of violation',
       buttons: ['Dismiss']
     }).then(alert => alert.present());
   }
+
+
 
   presentAlert5() {
     const alert = this.alertController.create({
