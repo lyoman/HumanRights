@@ -1,22 +1,15 @@
-import { finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
-import { AlertController, NavController, Platform, LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { Filesystem, Directory } from '@capacitor/filesystem';
 // import { Geolocation } from '@capacitor/geolocation';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FormBuilder } from '@angular/forms';
+import { ApiService } from './../../services/api.service';
 
-
-const IMAGE_DIR = 'stored-images';
-
-interface LocalFile {
-  name: string;
-  path: string;
-  data: string;
-}
-
+// fileToUpload: File = null;
+// fileToUpload1: File = null;
+// fileToUpload2: File = null;
 
 @Component({
   selector: 'app-report-incident-new',
@@ -25,16 +18,11 @@ interface LocalFile {
 })
 export class ReportIncidentNewPage implements OnInit {
 
-  private file: File;
-
-  // Multiple File Upload
-  private fileOne: File;
-  private fileTwo: File;
-  private fileThree: File;
-
-  images: LocalFile[] = [];
-
   fileToUpload: File = null;
+  fileToUpload1: File = null;
+  fileToUpload2: File = null;
+  filesForm;
+
   cordinates: any;
 
   Forced_Displacement = "Forced displacement";
@@ -77,6 +65,10 @@ export class ReportIncidentNewPage implements OnInit {
   backtoVicBtn = "false";
   gotoPepBtn = "false";
   backtoPerp = "false";
+
+  imagesArray = [];
+  audiosArray = [];
+  videosArray = [];
 
 
 
@@ -227,13 +219,17 @@ export class ReportIncidentNewPage implements OnInit {
     private authService: AuthService,
     private navCtrl: NavController,
     private router: Router,
-    private plt: Platform,
-    private platform: Platform,
-    private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
   ) {
     this.getLocation();
+    this.filesForm = this.formBuilder.group({
+      type: '',
+      name: '',
+      file: '',
+    });
   }
 
   new_case = {
@@ -327,6 +323,84 @@ export class ReportIncidentNewPage implements OnInit {
     // identity_verification: "",
     // evidence_files: ""
   }
+
+  saveClosureRawMaterials() {
+    this.loading = true;
+    const uploadData = new FormData();
+
+    if (this.fileToUpload) {
+      uploadData.append('type', 'image');
+      uploadData.append('name', this.fileToUpload.name);
+      uploadData.append('file', this.fileToUpload, this.fileToUpload.name);
+    }
+    if (this.fileToUpload == null) {
+      // this.toastr.error('Error', 'Please attach a file.');
+      this.loading = false;
+    }
+
+    if (this.fileToUpload1) {
+      uploadData.append('type', 'audio');
+      uploadData.append('name', this.fileToUpload1.name);
+      uploadData.append('file', this.fileToUpload1, this.fileToUpload1.name);
+    }
+    if (this.fileToUpload1 == null) {
+      // this.toastr.error('Error', 'Please attach a file.');
+      this.loading = false;
+    }
+
+    if (this.fileToUpload2) {
+      uploadData.append('type', 'video');
+      uploadData.append('name', this.fileToUpload2.name);
+      uploadData.append('file', this.fileToUpload2, this.fileToUpload2.name);
+    }
+    if (this.fileToUpload2 == null) {
+      // this.toastr.error('Error', 'Please attach a file.');
+      this.loading = false;
+    }
+
+    this.apiService.portPostData3('reportcase/add_files/', uploadData).subscribe(
+      (data) => {
+        this.loading = false;
+        this.presentAlertFiles();
+        console.log('data', data);
+        if(data['type'] == 'audio'){
+          this.audiosArray.push(data);
+        }
+
+        if(data['type'] == 'video'){
+          this.videosArray.push(data)
+        }
+
+        if(data['type'] == 'image'){
+          this.imagesArray.push(data);
+        }
+
+        // this.toastr.success('Success', 'Quality analysis saved successfully');
+      },
+      (err) => {
+        this.loading = false;
+        this.presentAlertFilesError();
+        console.log("err", err);
+        // this.toastr.error('Error', 'Please fill up all the fields');
+      }
+    );
+  }
+
+  onFileChange(event) {
+    this.fileToUpload = event.target.files[0];
+    this.saveClosureRawMaterials();
+  }
+
+  onFileChange1(event) {
+    this.fileToUpload1 = event.target.files[0];
+    this.saveClosureRawMaterials();
+  }
+
+  onFileChange2(event) {
+    this.fileToUpload2 = event.target.files[0];
+    this.saveClosureRawMaterials();
+  }
+
 
 
   async getLocation() {
@@ -497,14 +571,6 @@ export class ReportIncidentNewPage implements OnInit {
     }
   }
 
-  // locationName(event){
-  //   if(event == "other weapons") {
-  //     this.locationName1 = "true";
-  //   } else {
-  //     this.locationName1 = "false";
-  //   }
-  // }
-
   activateLocation() {
     this.locationName1 = "true";
     this.onHome = "true";
@@ -535,143 +601,6 @@ export class ReportIncidentNewPage implements OnInit {
   async ngOnInit() {
     // this.loadFiles();
   }
-
-  async loadFiles() {
-    this.images = [];
-
-    // const loading = await this.loadingCtrl.create({
-    //     message: 'Loading data...',
-    // });
-    // await loading.present();
-
-    Filesystem.readdir({
-      directory: Directory.Data,
-      path: IMAGE_DIR
-    }).then(result => {
-      this.loadFileData(result.files);
-    }, async err => {
-      await Filesystem.mkdir({
-        directory: Directory.Data,
-        path: IMAGE_DIR
-      });
-    }).then(_ => {
-      // loading.dismiss();
-    })
-  }
-
-  async loadFileData(fileNames: string[]) {
-    for (let f of fileNames) {
-      const filePath = `${IMAGE_DIR}/${f}`;
-
-      const readFile = await Filesystem.readFile({
-        directory: Directory.Data,
-        path: filePath
-      });
-
-      this.images.push({
-        name: f,
-        path: filePath,
-        data: `data:image/jpeg;base64,${readFile.data}`
-      });
-    }
-  }
-
-  async selectImage() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera
-    });
-    console.log(image);
-
-    if (image) {
-      this.saveImage(image);
-    }
-  }
-
-  async saveImage(photo: Photo) {
-    const base64Data = await this.readAsBase64(photo);
-    console.log(base64Data);
-
-    const fileName = new Date().getTime() + '.jpeg';
-    const savedFile = await Filesystem.writeFile({
-      directory: Directory.Data,
-      path: `${IMAGE_DIR}/${fileName}`,
-      data: base64Data
-    });
-
-    this.loadFiles();
-  }
-
-  async readAsBase64(photo: Photo) {
-    if (this.platform.is('hybrid')) {
-      const file = await Filesystem.readFile({
-        path: photo.path
-      });
-
-      return file.data;
-    }
-    else {
-      const response = await fetch(photo.webPath);
-      const blob = await response.blob();
-      return await this.convertBlobToBase64(blob) as string;
-    }
-  }
-
-  // Helper function
-  convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
-    const reader = new FileReader;
-    reader.onerror = reject;
-    reader.onload = () => {
-      resolve(reader.result);
-    };
-    reader.readAsDataURL(blob);
-  });
-
-  async startUpload(file: LocalFile) {
-    const response = await fetch(file.data);
-    console.log("response", response);
-    console.log("file", file);
-
-    const blob = await response.blob();
-    console.log("blob", blob);
-    const formData = new FormData();
-    // formData.append('community_description', this.new_case.community_description);
-    formData.append('type_of_violation', this.new_case.type_of_violation);
-    // formData.append('how_it_happened', this.new_case.how_it_happened);
-    formData.append('evidence_files', blob, file.name);
-    formData.append('identity_verification', blob, file.name);
-    this.uploadData(formData);
-  }
-
-  async uploadData(formData: FormData) {
-    const loading = await this.loadingCtrl.create({
-      message: 'Uploading image...',
-    });
-    await loading.present();
-
-    // Use your own API!
-    const url = 'reportcase/report_case/new/';
-
-    this.authService.register(url, formData).pipe(
-      finalize(() => {
-        loading.dismiss();
-      })
-    ).subscribe(res => {
-      console.log(res);
-    })
-  }
-
-  async deleteImage(file: LocalFile) {
-    await Filesystem.deleteFile({
-      directory: Directory.Data,
-      path: file.path
-    });
-    this.loadFiles();
-  }
-
-
   async register() {
     if (
       this.new_case.type_of_violation == ""
@@ -687,6 +616,18 @@ export class ReportIncidentNewPage implements OnInit {
       }
       this.new_case.collection_vp = {
         "company": this.companyArray,
+      }
+
+      this.new_case.media_files = {
+        "audios": this.audiosArray,
+      }
+
+      this.new_case.media_files = {
+        "videos": this.videosArray,
+      }
+
+      this.new_case.media_files = {
+        "images": this.imagesArray,
       }
 
       if (this.latitude != null && this.longitude){
@@ -758,60 +699,22 @@ export class ReportIncidentNewPage implements OnInit {
   }
 
 
-  // onFileChange(event) {
-  //     this.fileToUpload = event.target.files[0];
-  // }
-
-
-
-
-  // New Code
-  // Single File Upload
-  onFileChange(fileChangeEvent) {
-    this.file = fileChangeEvent.target.files[0];
+  presentAlertFiles() {
+    const alert = this.alertController.create({
+      header: 'Success!',
+      message: 'Your file has been uploaded successfully, you can upload more',
+      subHeader: 'file uploaded',
+      buttons: ['Dismiss']
+    }).then(alert => alert.present());
   }
 
-  async submitForm() {
-    let formData = new FormData();
-    // formData.append('community_description', this.new_case.community_description);
-    formData.append('type_of_violation', this.new_case.type_of_violation);
-    // formData.append('how_it_happened', this.new_case.how_it_happened);
-    formData.append("evidence_files", this.file, this.file.name);
-    formData.append("identity_verification", this.file, this.file.name);
-
-    const serverUrl = "reportcase/report_case/new/";
-    const nestServerUrl = "http://localhost:3000/photos/upload";
-
-    this.authService.register(serverUrl, formData).subscribe((response) => {
-      console.log(response);
-    });
-  }
-
-  // Multiple File Upload
-  onFileOneChange(fileChangeEvent) {
-    this.fileOne = fileChangeEvent.target.files[0];
-  }
-
-  onFileTwoChange(fileChangeEvent) {
-    this.fileTwo = fileChangeEvent.target.files[0];
-  }
-
-  onFileThreeChange(fileChangeEvent) {
-    this.fileThree = fileChangeEvent.target.files[0];
-  }
-
-  async submitMultipleForm() {
-    let formData = new FormData();
-    formData.append("photos[]", this.fileOne, this.fileOne.name);
-    formData.append("photos[]", this.fileTwo, this.fileTwo.name);
-    formData.append("photos[]", this.fileThree, this.fileOne.name);
-
-    const serverUrl = "reportcase/report_case/new/";
-    const nestServerUrl = "http://localhost:3000/photos/uploads";
-
-    this.authService.register(serverUrl, formData).subscribe((response) => {
-      console.log(response);
-    });
+  presentAlertFilesError() {
+    const alert = this.alertController.create({
+      header: 'Failed!',
+      message: 'Your file has not been uploaded, pliz try again',
+      subHeader: 'file not uploaded',
+      buttons: ['Dismiss']
+    }).then(alert => alert.present());
   }
 
 }

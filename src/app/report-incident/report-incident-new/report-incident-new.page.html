@@ -823,13 +823,100 @@
                 </ion-item>
 
                 <ion-item>
-                    <ion-label position="floating" style="color: #6d0101;" class="ion-text-wrap">
+                    <!-- <ion-label position="floating" style="color: #6d0101;" class="ion-text-wrap">
                         <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                         Upload any documents, pictures or videos that you have
                     </ion-label><br>
                     <hr><br>
 
-                    <ion-input type="file" name="evidence_files"></ion-input>
+                    <ion-input type="file" name="evidence_files"></ion-input> -->
+
+                    <form [formGroup]="filesForm" (ngSubmit)="saveClosureRawMaterials()">
+
+                        <br />
+                        <div class="row" *ngIf="!loading">
+                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                  
+                  
+                          </div>
+                  
+                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                              <ion-label for="exampleFormControlInput1">Upload images</ion-label>
+                              <ion-input type="file" (change)="onFileChange($event)" formControlName="file"
+                                class="form-control"></ion-input>
+                            </div>
+
+                            <div *ngIf="imagesArray">
+                                <ion-list *ngFor="let user of imagesArray">
+                                    <ion-item>
+                                        <ion-label>
+                                            <h1>{{ user.name }}</h1>
+                                            <p>{{ user.file }}, {{ user.type }}</p>
+                                            <h2 style="white-space: nowrap;
+                                  overflow: hidden;
+                                  text-overflow: ellipsis;">{{ user.timestamp }}</h2>
+                                        </ion-label>
+                                        <ion-icon name="trash" item-right color="danger"></ion-icon>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
+                  
+                            <div class="form-group">
+                              <ion-label for="exampleFormControlInput1">Upload audios</ion-label>
+                              <ion-input type="file" (change)="onFileChange1($event)" formControlName="file"
+                                class="form-control"></ion-input>
+                            </div>
+
+                            <div *ngIf="audiosArray">
+                                <ion-list *ngFor="let user of audiosArray">
+                                    <ion-item>
+                                        <ion-label>
+                                            <h1>{{ user.name }}</h1>
+                                            <p>{{ user.file }}, {{ user.type }}</p>
+                                            <h2 style="white-space: nowrap;
+                                  overflow: hidden;
+                                  text-overflow: ellipsis;">{{ user.timestamp }}</h2>
+                                        </ion-label>
+                                        <ion-icon name="trash" item-right color="danger"></ion-icon>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
+
+                            <div class="form-group">
+                                <ion-label for="exampleFormControlInput1">Upload videos</ion-label>
+                                <ion-input type="file" (change)="onFileChange2($event)" formControlName="file"
+                                  class="form-control"></ion-input>
+                              </div>
+
+                              <div *ngIf="videosArray">
+                                <ion-list *ngFor="let user of videosArray">
+                                    <ion-item>
+                                        <ion-label>
+                                            <h1>{{ user.name }}</h1>
+                                            <p>{{ user.file }}, {{ user.type }}</p>
+                                            <h2 style="white-space: nowrap;
+                                  overflow: hidden;
+                                  text-overflow: ellipsis;">{{ user.timestamp }}</h2>
+                                        </ion-label>
+                                        <ion-icon name="trash" item-right color="danger"></ion-icon>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
+                          </div>
+                  
+                          <!-- <div class="text text-center" style="width: 100%;">
+                            <ion-button type="submit" [disabled]="filesForm.invalid" class="btn btn-outline-primary btn-block">Save
+                            </ion-button>
+                          </div> -->
+                        </div>
+                        <div *ngIf="loading" class="text ion-text-center myloader">
+                          <img height="200" width="auto" src="assets/imgs/tenor.gif">
+                          <div class="text">
+                            Loading....
+                          </div>
+                        </div>
+                      </form>
 
                     <!-- <ion-input type="text" [(ngModel)]="new_case.reporter_address" name="reporter_address"></ion-input> -->
                 </ion-item>
