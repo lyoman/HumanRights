@@ -562,16 +562,24 @@ export class ReportIncidentNewPage implements OnInit {
 
 
 
+  // async getLocation() {
+  //   console.log('[DEBUG] About to getCurrentPosition()');
+  //   const position = await this.geolocation.getCurrentPosition();
+  //   this.latitude = position.coords.latitude;
+  //   this.longitude = position.coords.longitude;
+  //   console.log("latitude", this.latitude);
+  //   console.log("longitude", this.longitude);
+  //   this.new_case.latitude = this.latitude;
+  //   this.new_case.longitude = this.longitude;
+  // }
+
   async getLocation() {
-    console.log('[DEBUG] About to getCurrentPosition()');
-    const position = await this.geolocation.getCurrentPosition();
-    this.latitude = position.coords.latitude;
-    this.longitude = position.coords.longitude;
-    console.log("latitude", this.latitude);
-    console.log("longitude", this.longitude);
-    this.new_case.latitude = this.latitude;
-    this.new_case.longitude = this.longitude;
-  }
+    const position = await this.geolocation.getCurrentPosition({ enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }).then(res => {
+      this.latitude = res.coords.latitude;
+      this.longitude = res.coords.longitude;
+    }
+    )
+  };
 
 
   victim_ = {
@@ -790,6 +798,8 @@ export class ReportIncidentNewPage implements OnInit {
       if (this.latitude != null && this.longitude) {
         this.new_case.latitude = this.latitude;
         this.new_case.longitude = this.longitude;
+      } else {
+        this.presentAlert14();
       }
       // const response = await fetch(file.data);
       // const blob = await response.blob();
@@ -824,6 +834,15 @@ export class ReportIncidentNewPage implements OnInit {
       header: 'Error!',
       message: 'Please fill in all the required fields',
       subHeader: 'Fill in all fields',
+      buttons: ['Dismiss']
+    }).then(alert => alert.present());
+  }
+
+  presentAlert14() {
+    const alert = this.alertController.create({
+      header: 'Error location!',
+      message: 'Unable to pick location',
+      subHeader: 'location not picked',
       buttons: ['Dismiss']
     }).then(alert => alert.present());
   }
