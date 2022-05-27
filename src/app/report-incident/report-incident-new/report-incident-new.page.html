@@ -41,8 +41,8 @@
                         <ion-select-option value="Reduced freedom of movement">Reduced freedom of movement
                         </ion-select-option>
                         <ion-select-option value="Limited access to water">Limited access to water</ion-select-option>
-                        <ion-select-option value="Denied access to social services like Health facilities, School, Markets place">Denied access to social services
-                            like Health facilities, School, Markets place </ion-select-option>
+                        <!-- <ion-select-option value="Denied access to social services like Health facilities, School, Markets place">Denied access to social services
+                            like Health facilities, School, Markets place </ion-select-option> -->
                         <ion-select-option value="Forced and unpaid labour">Forced and unpaid labour</ion-select-option>
                         <ion-select-option value="Child labour">Child labour </ion-select-option>
                         <ion-select-option value="Murder or killings">Murder or killings</ion-select-option>
@@ -501,8 +501,14 @@
                         <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                         Province
                     </ion-label>
-                    <ion-input type="text" [(ngModel)]="new_case.province" name="province">
-                    </ion-input>
+                    <!-- <ion-input type="text" [(ngModel)]="new_case.province" name="province">
+                    </ion-input> -->
+                    <ion-select interface="action-sheet" (ngModelChange)="switchProvince($event)" cancelText="Cancel"
+                        okText="Okay!" placeholder="Select province"
+                        class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.province"
+                        name="province">
+                        <ion-select-option *ngFor="let item of provinces" value="{{ item.name }}"> {{ item.name }} </ion-select-option>
+                    </ion-select>
                 </ion-item>
 
                 <ion-item>
@@ -510,8 +516,14 @@
                         <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                         District
                     </ion-label>
-                    <ion-input type="text" [(ngModel)]="new_case.district" name="district">
-                    </ion-input>
+                    <ion-select interface="action-sheet" cancelText="Cancel"
+                        okText="Okay!" placeholder="Select district"
+                        class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.district"
+                        name="district">
+                        <ion-select-option *ngFor="let item of district" value="{{ item.name }}"> {{ item.name }} </ion-select-option>
+                    </ion-select>
+                    <!-- <ion-input type="text" [(ngModel)]="new_case.district" name="district">
+                    </ion-input> -->
                 </ion-item>
 
                 <ion-item>
@@ -523,34 +535,34 @@
                     </ion-input>
                 </ion-item>
 
-                <ion-item>
+                <!-- <ion-item>
                     <ion-label style="color: #6d0101;" position="floating">
                         <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                         Chief
                     </ion-label>
                     <ion-input type="text" [(ngModel)]="new_case.chief" name="chief">
                     </ion-input>
-                </ion-item>
+                </ion-item> -->
 
-                <ion-item>
+                <!-- <ion-item>
                     <ion-label style="color: #6d0101;" position="floating">
                         <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                         Village
                     </ion-label>
                     <ion-input type="text" [(ngModel)]="new_case.village" name="village">
                     </ion-input>
-                </ion-item>
+                </ion-item> -->
 
-                <ion-item>
+                <!-- <ion-item>
                     <ion-label style="color: #6d0101;" position="floating">
                         <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                         Name of area or community
                     </ion-label>
                     <ion-input type="text" [(ngModel)]="new_case.name_of_area" name="name_of_area">
                     </ion-input>
-                </ion-item>
+                </ion-item> -->
 
-                <ion-item>
+                <!-- <ion-item>
                     <ion-label style="color: #6d0101;" position="floating">
                         <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                         Location's cordinates
@@ -558,7 +570,7 @@
                     <ion-input readonly="true" type="text" [(ngModel)]="new_case.latitude" name="latitude"></ion-input>
                     <ion-input readonly="true" type="text" [(ngModel)]="new_case.longitude" name="longitude">
                     </ion-input>
-                </ion-item>
+                </ion-item> -->
             </div>
 
             <div id="victims" *ngIf="victimDiv == 'true'">

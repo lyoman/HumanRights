@@ -104,7 +104,7 @@ export class ReportIncidentNewPage implements OnInit {
     // this.gotoLocation1 = "false";
   }
 
-  gotoVictimFun(){
+  gotoVictimFun() {
     this.locationName1 = "false";
     this.locationDiv = "false";
     this.victimDiv = "true";
@@ -117,7 +117,7 @@ export class ReportIncidentNewPage implements OnInit {
     // this.backtoLocation1 = "false";
   }
 
-  backtoVicFun (){
+  backtoVicFun() {
     this.pepDiv = "false";
     this.backtoVicBtn = "false";
     this.backtoLocation1 = "true";
@@ -136,7 +136,7 @@ export class ReportIncidentNewPage implements OnInit {
     this.backtoPerp = "false";
   }
 
-  gotoPepFun(){
+  gotoPepFun() {
     this.victimDiv = "false";
     this.pepDiv = "true";
     this.backtoVicBtn = "true";
@@ -210,6 +210,109 @@ export class ReportIncidentNewPage implements OnInit {
     location: ""
   }
 
+  provinces = [
+    {
+      name: 'Bulawayo Province',
+    },
+    {
+      name: 'Harare Province',
+    },
+    {
+      name: 'Manicaland Province',
+    },
+    {
+      name: 'Mashonaland Central Province',
+    },
+    {
+      name: 'Mashonaland East Province',
+    },
+    {
+      name: 'Mashonaland West Province',
+    },
+    {
+      name: 'Masvingo Province',
+    },
+    {
+      name: 'Matabeleland North Province',
+    },
+    {
+      name: 'Matabeleland South Province',
+    },
+    {
+      name: 'Midlands Province'
+    }
+  ]
+
+  district = [];
+
+  bulawayoProvince = [
+    { name: "Bulawayo" },
+  ]
+
+  harareProvince = [
+    { name: "Harare" },
+  ]
+
+  manicaProvince = [
+    { name: "Buhera" }, { name: "Chimanimani" }, { name: "Chipinge" }, { name: "Makoni" },
+    { name: "Mutare" }, { name: "Mutasa" }, { name: "Nyanga" },
+  ]
+
+  mashonaEastProvince = [
+    { name: "Chikomba" }, { name: "Goromonzi" }, { name: "Marondera" }, { name: "Mudzi" },
+    { name: "Murehwa" }, { name: "Mutoko" }, { name: "Seke" }, { name: "Uzumba-Maramba-Pfungwe" }, { name: "Wedza" },
+  ]
+
+  mashonaCentralProvince = [
+    { name: "Bindura" }, { name: "Guruve" }, { name: "Mazowe" }, { name: "Mbire" }, { name: "Mount Darwin" },
+    { name: "Muzarabani" }, { name: "Rushinga" }, { name: "Shamva" },
+  ]
+
+  mashonaWestProvince = [
+    { name: "Chegutu" }, { name: "Hurungwe" }, { name: "Kariba" }, { name: "Makonde" }, { name: "Sanyati" },
+    { name: "Zvimba" }, { name: "Kadoma" }, { name: "Mhondoro-Ngezi" },
+  ]
+
+  masvingoProvince = [
+    { name: "Bikita" }, { name: "Chiredzi" }, { name: "Chivi" }, { name: "Gutu" }, { name: "Masvingo" },
+    { name: "Mwenezi" }, { name: "Zaka" },
+  ]
+
+  midlandsProvince = [
+    { name: "Chirumhanzu" }, { name: "Gokwe North" }, { name: "Gokwe South" }, { name: "Gweru" },
+    { name: "Kwekwe" }, { name: "Mberengwa" }, { name: "Shurugwi" }, { name: "Zvishavane" },
+  ]
+
+  mathnorthProvince = [
+    { name: "Binga" }, { name: "Bubi" }, { name: "Hwange" }, { name: "Lupane" }, { name: "Nkayi" },
+    { name: "Tsholotsho" }, { name: "Umguza" },
+  ]
+
+  matsouthProvince = [
+    { name: "Beitbridge" }, { name: "Bulilima" }, { name: "Gwanda" }, { name: "Insiza" }, { name: "Mangwe" },
+    { name: "Matobo" }, { name: "Umzingwane" },
+  ]
+
+  allProvince = [
+    { name: "Bulawayo" }, { name: "Harare" },
+    { name: "Buhera" }, { name: "Chimanimani" }, { name: "Chipinge" }, { name: "Makoni" },
+    { name: "Mutare" }, { name: "Mutasa" }, { name: "Nyanga" },
+    { name: "Chikomba" }, { name: "Goromonzi" }, { name: "Marondera" }, { name: "Mudzi" },
+    { name: "Murehwa" }, { name: "Mutoko" }, { name: "Seke" }, { name: "Uzumba-Maramba-Pfungwe" }, { name: "Wedza" },
+    { name: "Bindura" }, { name: "Guruve" }, { name: "Mazowe" }, { name: "Mbire" }, { name: "Mount Darwin" },
+    { name: "Muzarabani" }, { name: "Rushinga" }, { name: "Shamva" },
+    { name: "Chegutu" }, { name: "Hurungwe" }, { name: "Kariba" }, { name: "Makonde" }, { name: "Sanyati" },
+    { name: "Zvimba" }, { name: "Kadoma" }, { name: "Mhondoro-Ngezi" },
+    { name: "Bikita" }, { name: "Chiredzi" }, { name: "Chivi" }, { name: "Gutu" }, { name: "Masvingo" },
+    { name: "Mwenezi" }, { name: "Zaka" },
+    { name: "Chirumhanzu" }, { name: "Gokwe North" }, { name: "Gokwe South" }, { name: "Gweru" },
+    { name: "Kwekwe" }, { name: "Mberengwa" }, { name: "Shurugwi" }, { name: "Zvishavane" },
+    { name: "Binga" }, { name: "Bubi" }, { name: "Hwange" }, { name: "Lupane" }, { name: "Nkayi" },
+    { name: "Tsholotsho" }, { name: "Umguza" },
+    { name: "Beitbridge" }, { name: "Bulilima" }, { name: "Gwanda" }, { name: "Insiza" }, { name: "Mangwe" },
+    { name: "Matobo" }, { name: "Umzingwane" },
+  ]
+
   loading: any;
 
   latitude: any;
@@ -231,6 +334,46 @@ export class ReportIncidentNewPage implements OnInit {
       name: '',
       file: '',
     });
+  }
+
+  switchProvince(province: string) {
+    switch (province) {
+      case 'Bulawayo Province':
+        this.district = this.bulawayoProvince;
+        break;
+      case 'Harare Province':
+        this.district = this.harareProvince;
+        break;
+      case 'Manicaland Province':
+        this.district = this.manicaProvince;
+        break;
+      case 'Mashonaland Central Province':
+        this.district = this.mashonaCentralProvince;
+        break;
+      case 'Mashonaland East Province':
+        this.district = this.mashonaEastProvince;
+        break;
+      case 'Mashonaland West Province':
+        this.district = this.mashonaWestProvince;
+        break;
+      case 'Masvingo Province':
+        this.district = this.masvingoProvince;
+        break;
+
+      case 'Matabeleland North Province':
+        this.district = this.mathnorthProvince;
+        break;
+
+      case 'Matabeleland South Province':
+        this.district = this.matsouthProvince;
+        break;
+
+      case 'Midlands Province':
+        this.district = this.midlandsProvince;
+        break;
+      default:
+        this.district = this.allProvince;
+    }
   }
 
   new_case = {
@@ -367,15 +510,15 @@ export class ReportIncidentNewPage implements OnInit {
         this.loading = false;
         this.presentAlertFiles();
         console.log('data', data);
-        if(data['type'] == 'audio'){
+        if (data['type'] == 'audio') {
           this.audiosArray.push(data);
         }
 
-        if(data['type'] == 'video'){
+        if (data['type'] == 'video') {
           this.videosArray.push(data)
         }
 
-        if(data['type'] == 'image'){
+        if (data['type'] == 'image') {
           this.imagesArray.push(data);
         }
 
@@ -390,15 +533,15 @@ export class ReportIncidentNewPage implements OnInit {
     );
   }
 
-  removeAudio(index){
+  removeAudio(index) {
     this.audiosArray.splice(index, 1);
   }
 
-  removeVideo(index){
+  removeVideo(index) {
     this.videosArray.splice(index, 1);
   }
 
-  removeImage(index){
+  removeImage(index) {
     this.imagesArray.splice(index, 1);
   }
 
@@ -644,7 +787,7 @@ export class ReportIncidentNewPage implements OnInit {
       }
 
 
-      if (this.latitude != null && this.longitude){
+      if (this.latitude != null && this.longitude) {
         this.new_case.latitude = this.latitude;
         this.new_case.longitude = this.longitude;
       }
