@@ -25,6 +25,8 @@ export class ReportIncidentNewPage implements OnInit {
 
   cordinates: any;
 
+  hideHeading = "true";
+
   Forced_Displacement = "Forced displacement";
   denied = "false";
   forced = "false";
@@ -92,6 +94,7 @@ export class ReportIncidentNewPage implements OnInit {
     this.onHome = "false";
     this.gotoVictimBtn = "false";
     this.locationDiv = "false";
+    this.hideHeading = "true";
   }
 
   gotoLocation1Fun() {
@@ -101,6 +104,7 @@ export class ReportIncidentNewPage implements OnInit {
     this.gotoVictimBtn = "true";
     this.onHome = "true";
     this.locationDiv = "true";
+    this.hideHeading = "false";
     // this.gotoLocation1 = "false";
   }
 
@@ -585,6 +589,7 @@ export class ReportIncidentNewPage implements OnInit {
   victim_ = {
     victim_name: '',
     victim_description: '',
+    victim_description_other: '',
     victim_contact: '',
     victim_age: '',
     victim_gender: ''
@@ -598,6 +603,7 @@ export class ReportIncidentNewPage implements OnInit {
 
   perpetrator = {
     description_of_perpetrator: "",
+    description_of_perpetrator_other: "",
     perpetrator_age: "",
     perpetrator_gender: "",
     perpetrator_name: ""

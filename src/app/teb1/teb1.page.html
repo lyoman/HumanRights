@@ -1,192 +1,16 @@
-<!-- <ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-            <ion-menu-button color="light" autoHide="false"></ion-menu-button>
-        </ion-buttons>
-        <ion-title style="margin-right:50px;" class="title" class="ion-text-center">
-            Home | {{ username }}
-        </ion-title>
-    </ion-toolbar>
-</ion-header>
-
-<ion-content>
-    <ion-grid *ngIf="is_superuser == 'true'">
-        <ion-row>
-            <ion-col size="4" no-padding [routerLink]="['/addstock/addstock-new']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="add-circle-outline"></ion-icon>
-                    <h3>Add Report</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/addstock']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="albums-outline"></ion-icon>
-
-                    <h3>Added Cases</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/sellstock']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="folder-outline"></ion-icon>
-                    <h3>All Reports</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/profile']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="person-outline"></ion-icon>
-
-                    <h3>Profile</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/financial-summary']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="analytics-outline"></ion-icon>
-                    <h3>Statistics</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/contactus']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="call-outline"></ion-icon>
-
-                    <h3>Contact Us</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/aboutus']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="information-circle-outline"></ion-icon>
-                    <h3>About Us</h3>
-                </ion-card>
-            </ion-col>
-
-
-
-            <ion-col size="4" no-padding [routerLink]="['/help']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="help-circle-outline"></ion-icon>
-
-                    <h3>Help</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" (click)="logout()" no-padding [routerLink]="['/login']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="log-out-outline"></ion-icon>
-
-                    <h3>Logout</h3>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-
-
-    <ion-grid *ngIf="is_superuser == 'false'">
-        <ion-row>
-            <ion-col size="4" no-padding [routerLink]="['/addstock/addstock-new']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="add-circle-outline"></ion-icon>
-                    <h3>Add Report</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/addstock']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="albums-outline"></ion-icon>
-
-                    <h3>Added Cases</h3>
-                </ion-card>
-            </ion-col>
- 
-            <ion-col size="4" no-padding [routerLink]="['/profile']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="person-outline"></ion-icon>
-
-                    <h3>Profile</h3>
-                </ion-card>
-            </ion-col>
-
-
-            <ion-col size="4" no-padding [routerLink]="['/contactus']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="call-outline"></ion-icon>
-
-                    <h3>Contact Us</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/suggestion']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="chatbox-outline"></ion-icon>
-                      <h3>Suggestions</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" no-padding [routerLink]="['/aboutus']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="information-circle-outline"></ion-icon>
-                    <h3>About Us</h3>
-                </ion-card>
-            </ion-col>
-
-
-
-            <ion-col size="4" no-padding [routerLink]="['/help']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="help-circle-outline"></ion-icon>
-
-                    <h3>Help</h3>
-                </ion-card>
-            </ion-col>
-
-            <ion-col size="4" (click)="logout()" no-padding [routerLink]="['/login']">
-                <ion-card>
-                    <br>
-                    <ion-icon size="large" name="log-out-outline"></ion-icon>
-                    <h3>Logout</h3>
-                </ion-card>
-            </ion-col>
-
-
-        </ion-row>
-    </ion-grid>
-
-</ion-content> -->
-
 <ion-header>
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-menu-button color="light" autoHide="false"></ion-menu-button>
         </ion-buttons>
         <ion-title style="margin-right:50px;" class="title" class="ion-text-center">
-            CNRG | Reporting Application
+            EYES | Reporting Application
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding animated fadeIn login auth-page">
     <div class="login-content">
-
         <div padding-horizontal class="ion-text-center" class="animated fadeInDown" style="padding-top: 5%;">
             <div class="ion-text-center">
                 <img class="img img-rounded" src="assets/imgs/CNRG-Final-logo.png"
@@ -197,32 +21,28 @@
         </div>
         <hr>
 
-        <p>
-            CNRG is implementing a project that seeks to enhance reporting of human rights abuses in selected
-            communities were
-            mining is taking place in Zimbabwe.
+        <p style="font-weight: bolder;">
+            EYES mobile application.
         </p>
 
         <p>
-            The project involves capacitating communities to collect data on human rights abuses and reporting the data
-            in
-            real time.
+            This app will assist you to report incidences or cases of human rights abuses that you observe in your
+            community.
+            These cases or incidences should be related to extractive activities occurring in your area.
         </p>
 
-        <p> The project aims to enhance the monitoring of rights, including environmental management in communities
-            through
-            crowdsourcing of evidence of human rights abuses and environmental degradation in the communities.</p>
         <p>
-            The goal of the project is to map and track trends of human rights abuses using data and ultimately lobbying
-            extractive companies and the state to uphold rights of communities that host natural resources, based on the
-            evidence gathered.
+            The information that you provide will assist CNRG and your community to advocate for justice for those
+            affected.
+            CNRG will treat this information with utmost confidentiality; without disclosing your name(s). It should
+            take you
+            2
+            minutes to complete the report.
         </p>
 
-
-        <form class="list-form">
-
-
-        </form>
+        <p style="margin-top: 3%;margin-left: auto;margin-right: auto;text-align: center;">
+            <small style="font-size: large;font-family: Arial, Helvetica, sans-serif;font-weight: bold;">Thank you</small>.
+          </p>
     </div>
 </ion-content>
 

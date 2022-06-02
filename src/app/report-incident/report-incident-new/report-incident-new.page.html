@@ -4,7 +4,7 @@
             <ion-back-button autoHide="false"></ion-back-button>
         </ion-buttons>
         <ion-title class="title" style="margin-right: 50px;" class="ion-text-center">
-            Report New Incident
+            Report new incident
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -13,16 +13,16 @@
     <div class="login-content" *ngIf="!loading">
         <form class="list-form">
 
-            <div id="universal">
-                Please fill in this form with every detail that you have about the incident that have occured. You can
-                also attach some pictures and videos at the end of this report.
+            <div id="universal" *ngIf="hideHeading == 'true'">
+                Please fill in this form with every detail that you have about the incident that has occured. You can
+                also attach pictures and videos.
             </div><br>
 
             <div class="form" *ngIf="onHome == 'false'">
                 <ion-item>
                     <ion-label position="floating" style="color: #6d0101;">
                         <ion-icon name="person" item-start class="text-warning"></ion-icon>
-                        Choose Violation
+                        Choose violation
                     </ion-label>
 
                     <ion-select interface="action-sheet" (ngModelChange)="violationType($event)" cancelText="Cancel"
@@ -33,12 +33,11 @@
                         <ion-select-option value="Exposure to pollutants">Exposure to pollutants</ion-select-option>
                         <ion-select-option value="Loss of land or economic assets">Loss of land or economic assets
                         </ion-select-option>
-                        <ion-select-option value="Desecration of cultural heritage including graves">Desecration of
-                            cultural heritage including graves</ion-select-option>
+                        <ion-select-option value="Desecration of cultural heritage including graves">Desecration of Cultural Heritage Sites</ion-select-option>
                         <ion-select-option value="Torture, intimidation and harassment">Torture, intimidation and
                             harassment
                         </ion-select-option>
-                        <ion-select-option value="Reduced freedom of movement">Reduced freedom of movement
+                        <ion-select-option value="Restricted freedom of movement">Restricted freedom of movement
                         </ion-select-option>
                         <ion-select-option value="Limited access to water">Limited access to water</ion-select-option>
                         <!-- <ion-select-option value="Denied access to social services like Health facilities, School, Markets place">Denied access to social services
@@ -46,7 +45,7 @@
                         <ion-select-option value="Forced and unpaid labour">Forced and unpaid labour</ion-select-option>
                         <ion-select-option value="Child labour">Child labour </ion-select-option>
                         <ion-select-option value="Murder or killings">Murder or killings</ion-select-option>
-                        <ion-select-option value="Evidence of smuggling">Evidence of smuggling</ion-select-option>
+                        <!-- <ion-select-option value="Evidence of smuggling">Evidence of smuggling</ion-select-option> -->
                         <ion-select-option value="Sexual violence">Sexual violence</ion-select-option>
                     </ion-select>
                 </ion-item>
@@ -54,36 +53,17 @@
                 <ion-item>
                     <ion-label position="floating" style="color: #6d0101;">
                         <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
-                        Date of Incident
+                        Date of incident
                     </ion-label>
                     <ion-input type="date" [(ngModel)]="new_case.date_reported" name="date_reported"></ion-input>
                 </ion-item>
 
-                <!-- <ion-item>
-            <ion-label position="floating" style="color: #6d0101;">
-              <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-              Location
-            </ion-label>
-            <ion-select class="myCustomSelect form-control custom-options"
-              [(ngModel)]="new_case.type_of_violation" name="type_of_violation">
-              <ion-select-option value="province">Province</ion-select-option>
-              <ion-select-option value="police">Police</ion-select-option>
-              <ion-select-option value="Ward Name">Ward Name</ion-select-option>
-              <ion-select-option value="Chief">Chief</ion-select-option>
-              <ion-select-option value="Village">Village</ion-select-option>
-            </ion-select>
-            <ion-input *ngIf="locationName1 == 'true'" placeholder="Name of area or community" type="text" [(ngModel)]="new_case.location" name="location"></ion-input>
-          </ion-item> -->
-
-
-
-
                 <div id="violation" *ngIf="forced == 'true'">
-                    <h2>Forced Displacement</h2>
+                    <h2>Forced displacement</h2>
                     <ion-item>
                         <ion-label style="color: #6d0101;" class="ion-text-wrap" position="floating">
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                            How many people have been forcibly removed?
+                            How many people have been forcibly displaced?
                         </ion-label><br>
                         <ion-input type="number" [(ngModel)]="new_case.fd_how_many_removed" name="fd_how_many_removed"></ion-input>
                     </ion-item>
@@ -119,6 +99,9 @@
                             <ion-select-option value="land pollution">land pollution</ion-select-option>
                             <ion-select-option value="water pollution">water pollution</ion-select-option>
                             <ion-select-option value="air pollution">air pollution</ion-select-option>
+                            <ion-select-option value="noise pollution">noise pollution</ion-select-option>
+                            <ion-select-option value="radioactive pollution">radioactive pollution</ion-select-option>
+                            <!-- Radioactive pollution -->
                         </ion-select>
                     </ion-item>
 
@@ -193,12 +176,12 @@
                 </div>
 
                 <div id="violation" *ngIf="cultural == 'true'">
-                    <h2>Desecration of cultural heritage including graves</h2>
+                    <h2>Desecration of Cultural Heritage Sites</h2>
 
                     <ion-item>
                         <ion-label style="color: #6d0101;" class="ion-text-wrap" position="floating">
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                            How many graves were desecrated?
+                            How many sites were desecrated?
                         </ion-label>
                         <ion-input type="number" [(ngModel)]="new_case.dc_how_many_graves" name="dc_how_many_graves">
                         </ion-input>
@@ -221,7 +204,7 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             Type
                         </ion-label>
-                        <ion-select (ngModelChange)="otherOption($event)" cancelText="Cancel" okText="Okay!"
+                        <ion-select (ngModelChange)="otherOption($event)" multiple="true" cancelText="Cancel" okText="Okay!"
                             class="ion-text-wrap myCustomSelect form-control custom-options"
                             [(ngModel)]="new_case.ti_type" name="ti_type">
                             <ion-select-option value="dog bites">dog bites</ion-select-option>
@@ -289,7 +272,7 @@
                 </div>
 
                 <div id="violation" *ngIf="freedom == 'true'">
-                    <h2>Reduced freedom of movement</h2>
+                    <h2>Restricted freedom of movement</h2>
                     <ion-item>
                         <ion-label style="color: #6d0101;" class="ion-text-wrap" position="floating">
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
@@ -465,13 +448,12 @@
                             <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                             How the people were killed
                         </ion-label>
-                        <ion-select (ngModelChange)="murderOption($event)" cancelText="Cancel" okText="Okay!"
+                        <ion-select multiple="true" (ngModelChange)="murderOption($event)" cancelText="Cancel" okText="Okay!"
                             class="myCustomSelect form-control custom-options" [(ngModel)]="new_case.mk_how_they_died"
                             name="mk_how_they_died">
                             <ion-select-option value="gunshots">Gunshots</ion-select-option>
                             <ion-select-option value="beatings">Beatings</ion-select-option>
                             <ion-select-option value="dogbites">Dogbites</ion-select-option>
-                            <ion-select-option value="machinery">Machinery</ion-select-option>
                             <ion-select-option value="equipment">Equipment</ion-select-option>
                             <ion-select-option value="other weapons">Other weapons</ion-select-option>
                         </ion-select>
@@ -529,7 +511,7 @@
                 <ion-item>
                     <ion-label style="color: #6d0101;" position="floating">
                         <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                        Ward Name
+                        Ward name
                     </ion-label>
                     <ion-input type="text" [(ngModel)]="new_case.ward_name" name="ward_name">
                     </ion-input>
@@ -575,14 +557,13 @@
 
             <div id="victims" *ngIf="victimDiv == 'true'">
                 <h2>Victim Details</h2>
-                <p>Press the Add button to add more victims.</p>
+                <p>Press the add button to add more victims.</p>
 
                 <div *ngIf="victimsArray">
                     <ion-list *ngFor="let user of victimsArray">
                         <ion-item>
                             <ion-label>
-                                <h1>{{ user.victim_name }}</h1>
-                                <p>{{ user.victim_description }}, {{ user.victim_contact }}</p>
+                                <h1>{{ user.victim_description }}</h1>
                                 <h2 style="white-space: nowrap;
                       overflow: hidden;
                       text-overflow: ellipsis;">{{ user.victim_age }}, {{ user.victim_gender }}</h2>
@@ -599,16 +580,16 @@
                             <ion-item>
                                 <ion-label position="floating" style="color: #6d0101;">
                                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                                    Description of Victims
+                                    Description of victims
                                 </ion-label>
 
-                                <ion-select interface="action-sheet" [(ngModel)]="victim_.victim_description"
+                                <ion-select multiple="true" [(ngModel)]="victim_.victim_description"
                                     name="victim_description">
                                     <ion-select-option value="Community member (individual/group)">Community member (individual/group)
                                     </ion-select-option>
-                                    <ion-select-option value="Women">Women</ion-select-option>
+                                    <!-- <ion-select-option value="Women">Women</ion-select-option>
                                     <ion-select-option value="Girls">Girls</ion-select-option>
-                                    <ion-select-option value="Youth">Youth</ion-select-option>
+                                    <ion-select-option value="Youth">Youth</ion-select-option> -->
                                     <ion-select-option value="Household">Household</ion-select-option>
                                     <ion-select-option value="Mining company ">Mining company </ion-select-option>
                                     <ion-select-option value="Traditional leader">Traditional leader</ion-select-option>
@@ -620,31 +601,8 @@
                                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
                                     Describe victims (optional)
                                 </ion-label>
-                                <ion-input type="text" [(ngModel)]="victim_.victim_description"
-                                    name="victim_description">
-                                </ion-input>
-                            </ion-item>
-                        </ion-col>
-
-                        <ion-col size="6">
-                            <ion-item>
-                                <ion-label position="floating" style="color: #6d0101;" class="ion-text-wrap">
-                                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                                    Victim Name
-                                </ion-label>
-                                <ion-input type="text" [(ngModel)]="victim_.victim_name" name="victim_name">
-                                </ion-input>
-                            </ion-item>
-                        </ion-col>
-
-                        <ion-col size="6">
-                            <ion-item>
-                                <ion-label position="floating" style="color: #6d0101;" class="ion-text-wrap">
-                                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                                    Cell mumber
-                                </ion-label>
-
-                                <ion-input type="text" [(ngModel)]="victim_.victim_contact" name="victim_contact">
+                                <ion-input type="text" [(ngModel)]="victim_.victim_description_other"
+                                    name="victim_description_other">
                                 </ion-input>
                             </ion-item>
                         </ion-col>
@@ -653,12 +611,13 @@
                             <ion-item>
                                 <ion-label style="color: #6d0101;" position="floating">
                                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                                    Victim Age
+                                    Victim age
                                 </ion-label>
                                 <ion-select class="myCustomSelect form-control custom-options"
                                     [(ngModel)]="victim_.victim_age" name="victim_age">
-                                    <ion-select-option value="Senior citizen">Senior citizen</ion-select-option>
+                                    <ion-select-option value="Senior citizen">Senior citizen (65+)</ion-select-option>
                                     <ion-select-option value="Adult">Adult</ion-select-option>
+                                    <!-- <ion-select-option value="Youth">Youth</ion-select-option> -->
                                     <ion-select-option value="Minor">Minor</ion-select-option>
                                 </ion-select>
                             </ion-item>
@@ -681,25 +640,22 @@
 
                         <ion-col size="6">
                             <ion-button style="color: white !important;background-color: #d4af37;"
-                                (click)="handleVictimsChange()">Add Victim</ion-button>
+                                (click)="handleVictimsChange()">Add victim</ion-button>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
             </div>
 
             <div id="perpetrator" *ngIf="pepDiv == 'true'">
-                <h2>Details of the Perpetrator</h2>
-                <p>Press the Add button to add more perpetrators.</p>
+                <h2>Details of the perpetrator</h2>
+                <p>Press the add button to add more perpetrators.</p>
 
                 <div *ngIf="perpetratorArray">
                     <ion-list *ngFor="let user of perpetratorArray">
                         <ion-item>
                             <ion-label>
-                                <h1>{{ user.perpetrator_name }}</h1>
-                                <p>{{ user.perpetrator_age }}, {{ user.description_of_perpetrator }}</p>
-                                <h2 style="white-space: nowrap;
-                      overflow: hidden;
-                      text-overflow: ellipsis;">{{ user.perpetrator_gender }}</h2>
+                                <h1>{{ user.description_of_perpetrator }}</h1>
+                                <p>{{ user.perpetrator_age }}</p>
                             </ion-label>
                             <ion-icon name="trash" item-right color="danger" (click)="removePerpetrator(user)">
                             </ion-icon>
@@ -712,7 +668,7 @@
                             <ion-item>
                                 <ion-label position="floating" style="color: #6d0101;">
                                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                                    Description of the Perpetrator
+                                    Description of the perpetrator
                                 </ion-label>
                                 <ion-select interface="action-sheet" (ngModelChange)="ivCompany($event)"
                                     placeholder="Please select" [(ngModel)]="perpetrator.description_of_perpetrator"
@@ -731,10 +687,10 @@
 
                                 <ion-label position="floating" style="color: #6d0101;">
                                     <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                                    Describe the Perpetrator (optional)
+                                    Describe the perpetrator (optional)
                                 </ion-label>
-                                <ion-input type="text" [(ngModel)]="perpetrator.description_of_perpetrator"
-                                    name="description_of_perpetrator"></ion-input>
+                                <ion-input type="text" [(ngModel)]="perpetrator.description_of_perpetrator_other"
+                                    name="description_of_perpetrator_other"></ion-input>
                             </ion-item>
                         </ion-col>
 
@@ -754,45 +710,18 @@
                         </ion-col>
 
                         <ion-col size="6">
-                            <ion-item>
-                                <ion-label style="color: #6d0101;" position="floating">
-                                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                                    Gender
-                                </ion-label>
-                                <ion-select class="myCustomSelect form-control custom-options"
-                                    [(ngModel)]="perpetrator.perpetrator_gender" name="perpetrator_gender">
-                                    <ion-select-option value="Male">Male</ion-select-option>
-                                    <ion-select-option value="Female">Female</ion-select-option>
-                                    <ion-select-option value="Both">Both</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                        </ion-col>
-
-                        <ion-col size="6">
-                            <ion-item>
-                                <ion-label position="floating" style="color: #6d0101;" class="ion-text-wrap">
-                                    <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                                    Name
-                                </ion-label>
-                                <ion-input type="text" [(ngModel)]="perpetrator.perpetrator_name"
-                                    name="perpetrator_name">
-                                </ion-input>
-                            </ion-item>
-                        </ion-col>
-
-                        <ion-col size="6">
                             <ion-button style="color: white !important;background-color: #d4af37;"
-                                (click)="handlePerpetratorChange()">Add Perpetrator</ion-button>
+                                (click)="handlePerpetratorChange()">Add perpetrator</ion-button>
                         </ion-col>
 
                         <ion-list *ngIf="involves_company == 'true'">
                             <ion-list-header>
-                                <h2>Company Details</h2>
+                                <h2>Company details</h2>
                             </ion-list-header>
                             <ion-item>
                                 <ion-label position="floating" style="color: #6d0101;">
                                     <ion-icon name="calendar" item-start class="text-warning"></ion-icon>
-                                    Comapany Name
+                                    Comapany name
                                 </ion-label>
                                 <ion-input type="text" [(ngModel)]="company_.company_name" name="company_name">
                                 </ion-input>

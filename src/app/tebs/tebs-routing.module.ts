@@ -18,16 +18,7 @@ const routes: Routes = [
               }
             ]
         },
-        {
-          path: 'teb2',
-          children:
-            [
-              {
-                path: '',
-                loadChildren: '../teb2/teb2.module#Teb2PageModule'
-              }
-            ]
-        },
+
         {
           path: 'teb3',
           children:
@@ -38,16 +29,7 @@ const routes: Routes = [
               }
             ]
         },
-        {
-          path: 'teb4',
-          children:
-            [
-              {
-                path: '',
-                loadChildren: '../teb4/teb4.module#Teb4PageModule'
-              }
-            ]
-        },
+
         {
           path: '',
           redirectTo: '/tebs/teb1',
