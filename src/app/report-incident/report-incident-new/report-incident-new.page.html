@@ -176,7 +176,7 @@
                 </div>
 
                 <div id="violation" *ngIf="cultural == 'true'">
-                    <h2>Desecration of Cultural Heritage Sites</h2>
+                    <h2>Desecration of cultural heritage sites</h2>
 
                     <ion-item>
                         <ion-label style="color: #6d0101;" class="ion-text-wrap" position="floating">
@@ -324,36 +324,6 @@
                             Number of children involved
                         </ion-label>
                         <ion-input type="number" [(ngModel)]="new_case.cl_number_of_children" name="cl_number_of_children">
-                        </ion-input>
-                    </ion-item>
-                </div>
-
-                <div id="violation" *ngIf="smuggling == 'true'">
-                    <h2>Evidence of smuggling</h2>
-                    <ion-item>
-                        <ion-label style="color: #6d0101;" class="ion-text-wrap" position="floating">
-                            <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                            Which resource is being smuggled
-                        </ion-label>
-                        <ion-input type="text" [(ngModel)]="new_case.es_which_resource" name="es_which_resource">
-                        </ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label style="color: #6d0101;" class="ion-text-wrap" position="floating">
-                            <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                            Who is smuggling the resources
-                        </ion-label>
-                        <ion-input type="number" [(ngModel)]="new_case.es_who_is_smuggling" name="es_who_is_smuggling">
-                        </ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label style="color: #6d0101;" class="ion-text-wrap" position="floating">
-                            <ion-icon name="cash" item-start class="text-warning"></ion-icon>
-                            Which company is involved
-                        </ion-label>
-                        <ion-input type="number" [(ngModel)]="new_case.es_company_involved" name="es_company_involved">
                         </ion-input>
                     </ion-item>
                 </div>
